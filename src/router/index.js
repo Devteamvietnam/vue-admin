@@ -1,29 +1,31 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../pages/Home.vue'
+import Router from 'vue-router'
+import { formatRoutes } from '@/utils/routerUtil'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../pages/About.vue')
+// Route configuration without login interception
+const loginIgnore = {
+  names: ['404', '403'], //Match according to route name
+  paths: ['/login'], //Match according to the route fullPath
+  /**
+   * Determine whether the route is included in the configuration
+   * @param route vue-router route object
+   * @returns {boolean}
+   */
+  includes(route) {
+    return this.names.includes(route.name) || this.paths.includes(route.path)
   }
-]
+}
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
-
-export default router
+/**
+ * Initialize routing instance
+ * @param isAsync is asynchronous routing mode
+ * @returns {VueRouter}
+ */
+function initRouter(isAsync) {
+  const options = isAsync ? require('./async/config.async').default : require('./config').default
+  formatRoutes(options.routes)
+  return new Router(options)
+}
+export { loginIgnore, initRouter }
