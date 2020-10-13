@@ -1,20 +1,14 @@
-<h1 align="center">Vue  Admin</h1>
+<h1 align="center">Vue Admin Boilerplate</h1>
 
 <div align="center">
   
 [Ant Design Pro](https://github.com/ant-design/ant-design-pro)'s implementation with Vue.  
-An out-of-box UI solution for enterprise applications as a React boilerplate.
+An out-of-box UI solution for enterprise applications as a React boilerplate. </br>
 [![Issues](	https://img.shields.io/github/issues/Devteamvietnam/vue-admin)](https://github.com/Devteamvietnam/vue-admin/issues)
 [![forks](https://img.shields.io/github/forks/Devteamvietnam/vue-admin)](https://github.com/Devteamvietnam/vue-admin/fork)
 [![stars](https://img.shields.io/github/stars/Devteamvietnam/vue-admin)](https://github.com/Devteamvietnam/vue-admin/stargazers)
-[![DevDependencies](https://img.shields.io/david/dev/iczer/vue-antd-admin)](https://david-dm.org/iczer/vue-antd-admin?type=dev)
-[![Release](https://img.shields.io/github/v/release/iczer/vue-antd-admin)](https://github.com/iczer/vue-antd-admin/releases/latest)
 </div>
 
-- Preview：https://iczer.gitee.io/vue-antd-admin
-- Documentation：https://iczer.gitee.io/vue-antd-admin-docs
-- FAQ：https://iczer.github.io/vue-antd-admin/start/faq.html
-- Mirror Repo in China：https://gitee.com/iczer/vue-antd-admin
 
 ## Browsers support
 Modern browsers and IE10.
