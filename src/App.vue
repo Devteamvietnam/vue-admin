@@ -74,6 +74,7 @@ export default {
       }
     },
     setHtmlTitle() {
+      //feat: add dynamic title form HTML
       const route = this.$route
       const key = route.path === '/' ? 'home.name' : getI18nKey(route.matched[route.matched.length - 1].path)
       document.title = process.env.VUE_APP_NAME + ' | ' + this.$t(key)
