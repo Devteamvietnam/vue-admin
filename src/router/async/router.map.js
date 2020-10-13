@@ -9,4 +9,5 @@ const routerMap = {
     component: () => import('@/pages/About')
   }
 }
+
 export default routerMap
