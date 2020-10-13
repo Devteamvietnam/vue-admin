@@ -1,7 +1,7 @@
 const client = require('webpack-theme-color-replacer/client')
-const { theme } = require('@/config')
-const { getMenuColors, getAntdColors, getThemeToggleColors, getFunctionalColors } = require('@/utils/colors')
-const { ANTD } = require('@/config/default')
+const { theme } = require('../config')
+const { getMenuColors, getAntdColors, getThemeToggleColors, getFunctionalColors } = require('../utils/colors')
+const { ANTD } = require('../config/default')
 
 function getThemeColors(color, $theme) {
   const _color = color || theme.color

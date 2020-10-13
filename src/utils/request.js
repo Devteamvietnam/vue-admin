@@ -21,7 +21,8 @@ const METHOD = {
   GET: 'get',
   POST: 'post',
   PUT: 'put',
-  DELETE: 'delete'
+  DELETE: 'delete',
+  PATH: 'path'
 }
 
 /**
@@ -40,6 +41,8 @@ async function request(url, method, params) {
     case METHOD.PUT:
       return await axios.put(url, params)
     case METHOD.DELETE:
+      return axios.delete(url, params)
+    case METHOD.PATH:
       return axios.delete(url, params)
     default:
       return await axios.get(url, { params })

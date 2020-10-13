@@ -2,14 +2,13 @@ import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import I18n from '@/locales/i18n'
 import './Objects'
-
+import { getI18nKey } from '@/utils/routerUtil'
 /**
  * Create i18n configuration
  * @param locale localized language
  * @param fallback fallback language
  * @returns {VueI18n}
  */
-
 function initI18n(locale, fallback) {
   Vue.use(VueI18n)
   let i18nOptions = {
@@ -21,16 +20,15 @@ function initI18n(locale, fallback) {
 }
 
 /**
- * Generate internationalized languages according to router options configuration
+ * Generate internationalized languages to router options configuration
  * @param lang
  * @param routes
  * @param valueKey
  * @returns {*}
  */
-
 function generateI18n(lang, routes, valueKey) {
   routes.forEach(route => {
-    // let keys = getI18nKey(route.fullPath).split('.')
+    let keys = getI18nKey(route.fullPath).split('.')
     let value =
       valueKey === 'path'
         ? route[valueKey]
@@ -38,13 +36,14 @@ function generateI18n(lang, routes, valueKey) {
             .filter(item => !item.startsWith(':') && item != '')
             .join('.')
         : route[valueKey]
-    lang.assignProps(value)
+    lang.assignProps(keys, value)
     if (route.children) {
       generateI18n(lang, route.children, valueKey)
     }
   })
   return lang
 }
+
 /**
  * Format router.options.routes to generate fullPath
  * @param routes
@@ -63,21 +62,22 @@ function formatFullPath(routes, parentPath = '') {
     }
   })
 }
+
 /**
  * Extract internationalized data from routing
  * @param i18n
  * @param routes
  */
-
 function mergeI18nFromRoutes(i18n, routes) {
   formatFullPath(routes)
-  const KR = generateI18n(new Object(), routes, 'name')
+  const CN = generateI18n(new Object(), routes, 'name')
   const US = generateI18n(new Object(), routes, 'path')
+  i18n.mergeLocaleMessage('CN', CN)
   i18n.mergeLocaleMessage('US', US)
-  i18n.mergeLocaleMessage('KR', KR)
   const messages = I18n.messages
   Object.keys(messages).forEach(lang => {
     i18n.mergeLocaleMessage(lang, messages[lang])
   })
 }
+
 export { initI18n, mergeI18nFromRoutes, formatFullPath }

@@ -1,4 +1,4 @@
-const { cssResolve } = require('@/config/replacer')
+const { cssResolve } = require('../config/replacer')
 // Correct the css result extracted by the webpack-theme-color-replacer plugin
 function resolveCss(output, srcArr) {
   let regExps = []

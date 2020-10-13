@@ -1,7 +1,7 @@
 const varyColor = require('webpack-theme-color-replacer/client/varyColor')
 const { generate } = require('@ant-design/colors')
-const { ADMIN, ANTD } = require('@/config/default')
-const Config = require('@/config')
+const { ADMIN, ANTD } = require('../config/default')
+const Config = require('../config')
 
 const themeMode = ADMIN.theme.mode
 

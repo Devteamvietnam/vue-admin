@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import { enquireScreen } from '@/utils/util'
+import { enquireScreen } from './utils/util'
 import { mapState, mapMutations } from 'vuex'
 import themeUtil from '@/utils/themeUtil'
 import { getI18nKey } from '@/utils/routerUtil'
