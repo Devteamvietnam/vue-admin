@@ -7,6 +7,7 @@ An out-of-box UI solution for enterprise applications as a React boilerplate. </
 [![Issues](	https://img.shields.io/github/issues/Devteamvietnam/vue-admin)](https://github.com/Devteamvietnam/vue-admin/issues)
 [![forks](https://img.shields.io/github/forks/Devteamvietnam/vue-admin)](https://github.com/Devteamvietnam/vue-admin/fork)
 [![stars](https://img.shields.io/github/stars/Devteamvietnam/vue-admin)](https://github.com/Devteamvietnam/vue-admin/stargazers)
+[![Build Status](https://travis-ci.com/Devteamvietnam/vue-admin.svg?branch=master)](https://travis-ci.com/Devteamvietnam/vue-admin)
 </div>
 
 
