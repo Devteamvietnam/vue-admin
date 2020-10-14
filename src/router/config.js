@@ -1,6 +1,6 @@
 // Routing configuration
 const options = {
-  mode: 'hash',
+  mode: 'history',
   routes: [
     {
       path: '/',
