@@ -18,8 +18,7 @@ const routesConfig = [
 ]
 
 const options = {
-  routes: parseRoutes(routesConfig, routerMap),
-  mode: 'history'
+  routes: parseRoutes(routesConfig, routerMap)
 }
 
 export default options

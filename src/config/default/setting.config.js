@@ -30,8 +30,8 @@ module.exports = {
   },
   footerLinks: [
     //Link at the bottom of the page, {link:'link address', name:'name/display text', icon:'icon, support ant design vue icon library'}
-    { link: 'https://vuejs.org', name: 'Pro Home' },
+    { link: 'https://vuejs.org', name: 'Home' },
     { link: 'https://github.com/Devteamvietnam/vue-admin', icon: 'github' },
-    { link: 'https://ant.design', name: 'Ant Design' }
+    { link: 'https://devteamvietnam.com', name: 'Devteam' }
   ]
 }

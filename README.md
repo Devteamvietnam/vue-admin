@@ -1,12 +1,13 @@
 <h1 align="center">Vue Admin Boilerplate</h1>
 
 <div align="center">
-  
-[Ant Design Pro](https://github.com/ant-design/ant-design-pro)'s implementation with Vue.  
+    
+[Vue-admin](https://github.com/Devteamvietnam/vue-admin)'s implementation with Vue.  
 An out-of-box UI solution for enterprise applications as a React boilerplate. </br>
 [![Issues](	https://img.shields.io/github/issues/Devteamvietnam/vue-admin)](https://github.com/Devteamvietnam/vue-admin/issues)
 [![forks](https://img.shields.io/github/forks/Devteamvietnam/vue-admin)](https://github.com/Devteamvietnam/vue-admin/fork)
 [![stars](https://img.shields.io/github/stars/Devteamvietnam/vue-admin)](https://github.com/Devteamvietnam/vue-admin/stargazers)
+[![Build Status](https://travis-ci.com/Devteamvietnam/vue-admin.svg?branch=master)](https://travis-ci.com/Devteamvietnam/vue-admin)
 </div>
 
 
