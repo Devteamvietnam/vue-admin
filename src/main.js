@@ -9,10 +9,10 @@ import store from './store'
 import 'animate.css/source/animate.css'
 import Plugins from '@/plugins'
 import { initI18n } from '@/utils/i18n'
-import bootstrap from './boostrap'
+import bootstrap from './bootstrap'
 
 const router = initRouter(store.state.setting.asyncRoutes)
-const i18n = initI18n('US', 'VI')
+const i18n = initI18n('US', 'VI', 'KO')
 
 Vue.use(Antd)
 Vue.config.productionTip = false

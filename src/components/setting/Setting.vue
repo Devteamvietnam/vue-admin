@@ -137,31 +137,13 @@
         </a-list-item>
       </a-list>
     </setting-item>
-    <a-alert
-      v-if="isDev"
-      style="max-width: 240px; margin: -16px 0 8px; word-break: break-all"
-      type="warning"
-      :message="$t('alert')"
-    >
-    </a-alert>
-    <a-button
-      v-if="isDev"
-      id="copyBtn"
-      :data-clipboard-text="copyConfig"
-      @click="copyCode"
-      style="width: 100%"
-      icon="copy"
-      >{{ $t('copy') }}</a-button
-    >
   </div>
 </template>
 
 <script>
 import SettingItem from './SettingItem'
 import { ColorCheckbox, ImgCheckbox } from '@/components/checkbox'
-import Clipboard from 'clipboard'
 import { mapState, mapMutations } from 'vuex'
-import { formatConfig } from '@/utils/formatter'
 import { setting } from '@/config/default'
 import sysConfig from '@/config/config'
 import fastEqual from 'fast-deep-equal'
@@ -205,32 +187,6 @@ export default {
   methods: {
     getPopupContainer() {
       return this.$el.parentNode
-    },
-    copyCode() {
-      let config = this.extractConfig(false)
-      this.copyConfig = `// Custom configuration, refer to ./default/setting.config.js, you can configure the properties that need to be customized here
-      module.exports = ${formatConfig(config)}
-      `
-      let clipboard = new Clipboard('#copyBtn')
-      clipboard.on('success', () => {
-        this.$message
-          .success(
-            `The copy is successful, overwrite the file src/config/config.js and restart the project to take effect`
-          )
-          .then(() => {
-            const localConfig = localStorage.getItem(process.env.VUE_APP_SETTING_KEY)
-            if (localConfig) {
-              console.warn(
-                'A locally saved theme configuration is detected, and you want to copy the configuration code to take effect, you may need to reset the configuration first'
-              )
-              this.$message.warn(
-                'A locally saved theme configuration is detected. If you want to copy the configuration code to take effect, you may need to reset the configuration first',
-                5
-              )
-            }
-          })
-        clipboard.destroy()
-      })
     },
     saveSetting() {
       const closeMessage = this.$message.loading('Save to local, please wait...', 0)

@@ -1,3 +1,7 @@
+import TabsView from '@/layouts/tabs/TabsView'
+// import BlankView from '@/layouts/BlankView'
+// import PageView from '@/layouts/PageView'
+
 // Routing configuration
 const options = {
   mode: 'history',
@@ -5,12 +9,26 @@ const options = {
     {
       path: '/',
       name: 'Home',
-      component: () => import('@/pages/Home')
-    },
-    {
-      path: '/about',
-      name: 'About',
-      component: () => import('@/pages//About')
+      component: TabsView,
+      // redirect: '/login',
+      children: [
+        {
+          path: 'Home',
+          name: 'Dashboard',
+          meta: {
+            icon: 'dashboard'
+          },
+          component: () => import('@/pages/Home')
+        },
+        {
+          path: 'about',
+          name: 'About',
+          meta: {
+            icon: 'about'
+          },
+          component: () => import('@/pages/About')
+        }
+      ]
     }
   ]
 }

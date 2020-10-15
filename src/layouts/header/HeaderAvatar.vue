@@ -1,8 +1,8 @@
 <template>
   <a-dropdown>
     <div class="header-avatar" style="cursor: pointer">
-      <a-avatar class="avatar" size="small" shape="circle" :src="user.avatar" />
-      <span class="name">{{ user.name }}</span>
+      <!-- <a-avatar class="avatar" size="small" shape="circle" :src="user.avatar" /> -->
+      <!-- <span class="name">{{ user.name }}</span> -->
     </div>
     <a-menu :class="['avatar-menu']" slot="overlay">
       <a-menu-item>
@@ -14,7 +14,7 @@
         <span>Settings</span>
       </a-menu-item>
       <a-menu-divider />
-      <a-menu-item @click="logout">
+      <a-menu-item>
         <a-icon style="margin-right: 8px;" type="poweroff" />
         <span>Sign out</span>
       </a-menu-item>
@@ -23,24 +23,14 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
-// import { logout } from '@/services/user'
-
 export default {
   name: 'HeaderAvatar',
-  computed: {
-    // ...mapGetters('account', ['user'])
-  },
-  methods: {
-    // logout() {
-    //   logout()
-    //   this.$router.push('/login')
-    // }
-  }
+  computed: {},
+  methods: {}
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .header-avatar {
   display: inline-flex;
   .avatar,

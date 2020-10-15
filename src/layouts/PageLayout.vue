@@ -135,8 +135,6 @@ export default {
 .page-content {
   position: relative;
   padding: 24px 0 0;
-  &.side {
-  }
   &.head.fixed {
     margin: 0 auto;
     max-width: 1400px;

@@ -40,7 +40,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .header-search {
   .search-icon {
     font-size: 16px;

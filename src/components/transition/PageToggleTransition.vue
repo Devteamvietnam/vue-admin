@@ -110,8 +110,4 @@ export default {
   animation-duration: 0.8s !important;
   width: calc(100%) !important;
 }
-.page-toggle-enter {
-}
-.page-toggle-leave-to {
-}
 </style>

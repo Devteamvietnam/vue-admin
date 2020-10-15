@@ -70,9 +70,7 @@ function formatFullPath(routes, parentPath = '') {
  */
 function mergeI18nFromRoutes(i18n, routes) {
   formatFullPath(routes)
-  const VI = generateI18n(new Object(), routes, 'name')
   const US = generateI18n(new Object(), routes, 'path')
-  i18n.mergeLocaleMessage('VI', VI)
   i18n.mergeLocaleMessage('US', US)
   const messages = I18n.messages
   Object.keys(messages).forEach(lang => {

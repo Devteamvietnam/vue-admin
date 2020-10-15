@@ -19,7 +19,7 @@ const ANIMATE = {
         .concat('default')
     },
     { name: 'flip', alias: 'flip', directions: ['x', 'y'] },
-    { name: 'lightSpeed', alias: 'Speed of light', directions: direct_s },
+    { name: 'lightSpeed', alias: 'light', directions: direct_s },
     { name: 'rotate', alias: 'rotate', directions: direct_3.concat('default') },
     { name: 'roll', alias: 'roll', directions: ['default'] },
     { name: 'zoom', alias: 'zoom', directions: direct_1.concat('default') },

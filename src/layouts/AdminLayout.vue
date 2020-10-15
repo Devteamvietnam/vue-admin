@@ -55,10 +55,11 @@
 <script>
 import AdminHeader from './header/AdminHeader'
 import PageFooter from './footer/PageFooter'
-import Drawer from '@/components/tool/Drawer'
-import SideMenu from '@/components/menu/SideMenu'
-import Setting from '@/components/settings/Setting'
+import Drawer from '../components/tool/Drawer'
+import SideMenu from '../components/menu/SideMenu'
+import Setting from '../components/setting/Setting'
 import { mapState, mapMutations, mapGetters } from 'vuex'
+
 const minHeight = window.innerHeight - 64 - 24 - 122
 
 export default {
@@ -68,7 +69,7 @@ export default {
     return {
       minHeight: minHeight,
       collapsed: false,
-      showSettings: false,
+      showSetting: false,
       drawerOpen: false
     }
   },
@@ -154,4 +155,51 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="less" scoped>
+.admin-layout {
+  .side-menu {
+    &.fixed-side {
+      position: fixed;
+      height: 100vh;
+      left: 0;
+      top: 0;
+    }
+  }
+  .virtual-side {
+    transition: all 0.2s;
+  }
+  .virtual-header {
+    transition: all 0.2s;
+    opacity: 0;
+    &.fixed-tabs.multi-page:not(.fixed-header) {
+      height: 0;
+    }
+  }
+  .admin-layout-main {
+    .admin-header {
+      top: 0;
+      right: 0;
+      overflow: hidden;
+      transition: all 0.2s;
+      &.fixed-tabs.multi-page:not(.fixed-header) {
+        height: 0;
+      }
+    }
+  }
+  .admin-layout-content {
+    padding: 24px 24px 0;
+    /*overflow-x: hidden;*/
+    min-height: calc(100vh - 64px - 122px);
+  }
+  .setting {
+    background-color: @primary-color;
+    color: @base-bg-color;
+    border-radius: 5px 0 0 5px;
+    line-height: 40px;
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    box-shadow: -2px 0 8px @shadow-color;
+  }
+}
+</style>
