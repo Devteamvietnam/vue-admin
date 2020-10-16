@@ -14,15 +14,30 @@ const routerMap = {
   // },
   root: {
     path: '/',
-    name: 'Home',
+    name: 'Dashboard',
     // redirect: '/login',
     component: view.tabs
   },
-  home: {
+  dashboard: {
     name: 'Dashboard',
+    component: view.blank
+  },
+  analysis: {
+    name: 'Analysis',
+    component: () => import('@/pages/dashboard/analysis')
+  },
+  demo: {
+    name: 'Demo Page',
+    icon: 'demo',
+    component: view.page
+  },
+  Home: {
+    path: 'home',
+    name: 'About',
     component: () => import('@/pages/Home')
   },
-  about: {
+  About: {
+    path: 'about',
     name: 'About',
     component: () => import('@/pages/About')
   }

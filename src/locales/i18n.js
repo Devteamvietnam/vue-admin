@@ -1,27 +1,43 @@
 module.exports = {
   messages: {
     VI: {
-      home: { name: 'Home' },
+      home: {
+        name: 'Home'
+      },
       dashboard: {
         name: 'Trang tổng quan',
-        workplace: { name: 'Workbench' },
         analysis: { name: 'Trang phân tích' }
+      },
+      demo: {
+        name: 'Demo',
+        home: { name: 'Home Demo' },
+        about: { name: 'About' }
       }
     },
     US: {
-      home: { name: 'Home' },
+      home: {
+        name: 'Home'
+      },
       dashboard: {
         name: 'Dashboard',
-        workplace: { name: 'Workbench' },
-        analysis: { name: 'Analysis Page' }
+        analysis: { name: 'Analysis' }
+      },
+      demo: {
+        name: 'Demo',
+        home: { name: 'Home Demo' },
+        about: { name: 'About' }
       }
     },
     KO: {
       home: { name: '집' },
       dashboard: {
         name: '대시 보드',
-        workplace: { name: '워크 벤치' },
         analysis: { name: '분석 페이지' }
+      },
+      demo: {
+        name: '데모',
+        home: { name: '홈 데모' },
+        about: { name: 'About' }
       }
     }
   }
