@@ -1,6 +1,6 @@
 import TabsView from '@/layouts/tabs/TabsView'
-// import BlankView from '@/layouts/BlankView'
-// import PageView from '@/layouts/PageView'
+import BlankView from '@/layouts/BlankView'
+import PageView from '@/layouts/PageView'
 
 // Routing configuration
 const options = {
@@ -13,20 +13,44 @@ const options = {
       // redirect: '/login',
       children: [
         {
-          path: 'Home',
+          path: 'dashboard',
           name: 'Dashboard',
           meta: {
             icon: 'dashboard'
           },
-          component: () => import('@/pages/Home')
+          component: BlankView,
+          children: [
+            {
+              path: 'analysis',
+              name: 'Analysis',
+              meta: {
+                page: {
+                  closable: false
+                }
+              },
+              component: () => import('@/pages/dashboard/analysis')
+            }
+          ]
         },
         {
-          path: 'about',
-          name: 'About',
+          path: 'demo',
+          name: 'Demo Page',
           meta: {
-            icon: 'about'
+            icon: 'demo'
           },
-          component: () => import('@/pages/About')
+          component: PageView,
+          children: [
+            {
+              path: 'home',
+              name: 'Home',
+              component: () => import('@/pages/Home')
+            },
+            {
+              path: 'about',
+              name: 'Step Page',
+              component: () => import('@/pages/About')
+            }
+          ]
         }
       ]
     }
