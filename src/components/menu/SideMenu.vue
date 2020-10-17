@@ -1,28 +1,21 @@
 <template>
-  <a-layout-sider
-    :theme="sideTheme"
-    :class="['side-menu', 'beauty-scroll', isMobile ? null : 'shadow']"
-    width="256px"
-    :collapsible="collapsible"
-    v-model="collapsed"
-    :trigger="null"
-  >
+  <a-layout-sider :theme="sideTheme" :class="['side-menu', 'beauty-scroll', isMobile ? null : 'shadow']" width="256px" :collapsible="collapsible" v-model="collapsed" :trigger="null">
     <div :class="['logo', theme]">
-      <router-link to="/">
-        <img src="@/assets/img/logo.png" />
-        <h1>{{ systemName }}</h1>
+      <router-link to="/dashboard/workplace">
+        <img src="@/assets/img/logo.png">
+        <h1>{{systemName}}</h1>
       </router-link>
     </div>
-    <i-menu :theme="theme" :collapsed="collapsed" :options="menuData" @select="onSelect" class="menu" />
+    <i-menu :theme="theme" :collapsed="collapsed" :options="menuData" @select="onSelect" class="menu"/>
   </a-layout-sider>
 </template>
 
 <script>
 import IMenu from './menu'
-import { mapState } from 'vuex'
+import {mapState} from 'vuex'
 export default {
   name: 'SideMenu',
-  components: { IMenu },
+  components: {IMenu},
   props: {
     collapsible: {
       type: Boolean,
@@ -51,7 +44,7 @@ export default {
     ...mapState('setting', ['isMobile', 'systemName'])
   },
   methods: {
-    onSelect(obj) {
+    onSelect (obj) {
       this.$emit('menuSelect', obj)
     }
   }
@@ -59,5 +52,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import 'index';
+@import "index";
 </style>

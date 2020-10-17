@@ -5,15 +5,13 @@
  * @returns {boolean|*}
  */
 function hasPermission(authority, permissions) {
-  let required = '*'
-  if (typeof authority === 'string') {
+  let required ='*'
+  if (typeof authority ==='string') {
     required = authority
-  } else if (typeof authority === 'object') {
+  } else if (typeof authority ==='object') {
     required = authority.permission
   }
-  return (
-    required === '*' || (permissions && permissions.findIndex(item => item === required || item.id === required) !== -1)
-  )
+  return required ==='*' || (permissions && permissions.findIndex(item => item === required || item.id === required) !== -1)
 }
 
 /**
@@ -23,10 +21,10 @@ function hasPermission(authority, permissions) {
  */
 function hasRole(authority, roles) {
   let required = undefined
-  if (typeof authority === 'object') {
+  if (typeof authority ==='object') {
     required = authority.role
   }
-  return authority === '*' || hasAnyRole(required, roles)
+  return authority ==='*' || hasAnyRole(required, roles)
 }
 
 /**
@@ -38,12 +36,10 @@ function hasRole(authority, roles) {
 function hasAnyRole(required, roles) {
   if (!required) {
     return false
-  } else if (Array.isArray(required)) {
-    return (
-      roles.findIndex(role => {
-        return required.findIndex(item => item === role || item === role.id) !== -1
-      }) !== -1
-    )
+  } else if(Array.isArray(required)) {
+    return roles.findIndex(role => {
+      return required.findIndex(item => item === role || item === role.id) !== -1
+    }) !== -1
   } else {
     return roles.findIndex(role => role === required || role.id === required) !== -1
   }
@@ -78,11 +74,11 @@ function filterMenu(menuData, permissions, roles) {
       if (!hasAuthority(menu, permissions, roles)) {
         menu.meta.invisible = true
       }
-      if (menu.children && menu.children.length > 0) {
+      if (menu.children && menu.children.length> 0) {
         filterMenu(menu.children, permissions, roles)
       }
     }
   })
 }
 
-export { filterMenu, hasAuthority }
+export {filterMenu, hasAuthority}

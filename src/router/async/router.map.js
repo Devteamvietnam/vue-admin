@@ -1,45 +1,44 @@
-//View component
+// view component
 const view = {
-  tabs: () => import('@/layouts/tabs'),
-  blank: () => import('@/layouts/BlankView'),
-  page: () => import('@/layouts/PageView')
-}
+  tabs: () => import("@/layouts/tabs"),
+  blank: () => import("@/layouts/BlankView"),
+  page: () => import("@/layouts/PageView")
+};
 
-// Route component registration
+// route map
 const routerMap = {
-  // login: {
-  //   authority: '*',
-  //   path: '/login',
-  //   component: () => import('@/pages/login')
-  // },
-  root: {
-    path: '/',
-    name: 'Dashboard',
-    // redirect: '/login',
-    component: view.tabs
-  },
   dashboard: {
-    name: 'Dashboard',
+    name: "Dashboard",
     component: view.blank
   },
+  workplace: {
+    name: "WorkPlace",
+    component: () => import("@/pages/dashboard/workplace")
+  },
   analysis: {
-    name: 'Analysis',
-    component: () => import('@/pages/dashboard/analysis')
+    name: "Analysis",
+    component: () => import("@/pages/dashboard/analysis")
   },
-  demo: {
-    name: 'Demo Page',
-    icon: 'demo',
-    component: view.page
+  exception: {
+    name: "Exception",
+    icon: "warning",
+    component: view.blank
   },
-  Home: {
-    path: 'home',
-    name: 'About',
-    component: () => import('@/pages/Home')
+  exp403: {
+    authority: "*",
+    name: "exp403",
+    path: "403",
+    component: () => import("@/pages/exception/403")
   },
-  About: {
-    path: 'about',
-    name: 'About',
-    component: () => import('@/pages/About')
+  exp404: {
+    name: "exp404",
+    path: "404",
+    component: () => import("@/pages/exception/404")
+  },
+  exp500: {
+    name: "exp500",
+    path: "500",
+    component: () => import("@/pages/exception/500")
   }
-}
-export default routerMap
+};
+export default routerMap;

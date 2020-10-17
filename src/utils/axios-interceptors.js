@@ -8,20 +8,20 @@ const resp401 = {
    * @returns {*}
    */
   onFulfilled(response, options) {
-    const { message } = options
+    const {message} = options
     if (response.status === 401) {
       message.error('No permission for this interface')
     }
     return response
   },
   /**
-   * Execute when response is wrong
+   * Execute when the response is wrong
    * @param error error object
    * @param options application configuration includes: {router, i18n, store, message}
    * @returns {Promise<never>}
    */
   onRejected(error, options) {
-    const { message } = options
+    const {message} = options
     message.error(error.message)
     return Promise.reject(error)
   }
@@ -29,9 +29,9 @@ const resp401 = {
 
 const resp403 = {
   onFulfilled(response, options) {
-    const { message } = options
+    const {message} = options
     if (response.status === 403) {
-      message.error(`Request rejected`)
+      message.error(`Request denied`)
     }
     return response
   }
@@ -45,8 +45,8 @@ const reqCommon = {
    * @returns {*}
    */
   onFulfilled(config, options) {
-    const { message } = options
-    const { url, xsrfCookieName } = config
+    const {message} = options
+    const {url, xsrfCookieName} = config
     if (url.indexOf('login') === -1 && xsrfCookieName && !Cookie.get(xsrfCookieName)) {
       message.warning('Authentication token has expired, please log in again')
     }
@@ -59,7 +59,7 @@ const reqCommon = {
    * @returns {Promise<never>}
    */
   onRejected(error, options) {
-    const { message } = options
+    const {message} = options
     message.error(error.message)
     return Promise.reject(error)
   }

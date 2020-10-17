@@ -1,5 +1,5 @@
-const { cssResolve } = require('../config/replacer')
-// Correct the css result extracted by the webpack-theme-color-replacer plugin
+const {cssResolve} = require('../config/replacer')
+// Correct the css results extracted by the webpack-theme-color-replacer plugin
 function resolveCss(output, srcArr) {
   let regExps = []
   // Extract all regular configurations in resolve configuration
@@ -32,18 +32,18 @@ function resolveCss(output, srcArr) {
         outArr.push(cfg.resolve(text, cssObj))
       }
     } else {
-      let cssText = ''
+      let cssText =''
       // If the match is unsuccessful, test whether there is a matching regular configuration, and if there is a matching regular configuration, it will be processed according to the corresponding regular configuration
       for (let regExp of regExps) {
         if (regExp[0].test(cssObj.selector)) {
           let cssCfg = regExp[1]
-          cssText = cssCfg ? cssCfg.resolve(text, cssObj) : ''
+          cssText = cssCfg? cssCfg.resolve(text, cssObj):''
           break
         }
         // If the regularity is not matched, set cssText as the default css (that is, do not process)
         cssText = text
       }
-      if (cssText != '') {
+      if (cssText !='') {
         outArr.push(cssText)
       }
     }
@@ -78,17 +78,15 @@ function parseCssObj(cssText) {
   let css = {}
   const ruleIndex = cssText.indexOf('{')
   css.selector = cssText.substring(0, ruleIndex)
-  const ruleBody = cssText.substring(ruleIndex + 1, cssText.length - 1)
+  const ruleBody = cssText.substring(ruleIndex + 1, cssText.length-1)
   const rules = ruleBody.split(';')
   css.rules = rules
-  css.toText = function() {
-    let body = ''
-    this.rules.forEach(item => {
-      body += item + ';'
-    })
+  css.toText = function () {
+    let body =''
+    this.rules.forEach(item => {body += item +';'})
     return `${this.selector}{${body}}`
   }
   return css
 }
 
-module.exports = { resolveCss }
+module.exports = {resolveCss}
