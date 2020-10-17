@@ -1,21 +1,21 @@
 const varyColor = require('webpack-theme-color-replacer/client/varyColor')
-const { generate } = require('@ant-design/colors')
-const { ADMIN, ANTD } = require('../config/default')
+const {generate} =  require('@ant-design/colors')
+const {ADMIN, ANTD} = require('../config/default')
 const Config = require('../config')
 
 const themeMode = ADMIN.theme.mode
 
 // Get ant design color system
 function getAntdColors(color, mode) {
-  let options = mode && mode == themeMode.NIGHT ? { theme: 'dark' } : undefined
+  let options = mode && (mode == themeMode.NIGHT)? {theme:'dark'}: undefined
   return generate(color, options)
 }
 
 // Get functional colors
 function getFunctionalColors(mode) {
-  let options = mode && mode == themeMode.NIGHT ? { theme: 'dark' } : undefined
-  let { success, warning, error } = ANTD.primary
-  const { success: s1, warning: w1, error: e1 } = Config.theme
+  let options = mode && (mode == themeMode.NIGHT)? {theme:'dark'}: undefined
+  let {success, warning, error} = ANTD.primary
+  const {success: s1, warning: w1, error: e1} = Config.theme
   success = success && s1
   warning = success && w1
   error = success && e1
@@ -28,7 +28,8 @@ function getFunctionalColors(mode) {
     error: errorColors
   }
 }
-// Get menu color
+
+// Get the menu color system
 function getMenuColors(color, mode) {
   if (mode == themeMode.NIGHT) {
     return ANTD.primary.night.menuColors
@@ -38,6 +39,7 @@ function getMenuColors(color, mode) {
     return [varyColor.darken(color, 0.93), varyColor.darken(color, 0.83), varyColor.darken(color, 0.73)]
   }
 }
+
 // Get theme mode switch color system
 function getThemeToggleColors(color, mode) {
   //Main color
@@ -45,19 +47,19 @@ function getThemeToggleColors(color, mode) {
   const primary = mainColors[5]
   //Auxiliary color system, because antd is not currently designed for night mode, so the auxiliary color system is added to ensure the normal switching of night mode
   const subColors = getAntdColors(primary, themeMode.LIGHT)
-  //Menu color system
+  //Menu color
   const menuColors = getMenuColors(color, mode)
   //Content color system (including background color, text color, etc.)
   const themeCfg = ANTD.theme[mode]
   let contentColors = Object.keys(themeCfg)
     .map(key => themeCfg[key])
-    .map(color => (isHex(color) ? color : toNum3(color).join(',')))
+    .map(color => isHex(color)? color: toNum3(color).join(','))
   // Content color is removed
   contentColors = [...new Set(contentColors)]
   // theme color in rgb format
   let rgbColors = [toNum3(primary).join(',')]
   let functionalColors = getFunctionalColors(mode)
-  return { primary, mainColors, subColors, menuColors, contentColors, rgbColors, functionalColors }
+  return {primary, mainColors, subColors, menuColors, contentColors, rgbColors, functionalColors}
 }
 
 function toNum3(color) {

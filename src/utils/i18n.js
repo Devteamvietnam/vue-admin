@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import I18n from '@/locales/i18n'
+import routesI18n from '@/locales/i18n'
 import './Objects'
-import { getI18nKey } from '@/utils/routerUtil'
+import {getI18nKey} from '@/utils/routerUtil'
+
 /**
  * Create i18n configuration
  * @param locale localized language
@@ -14,13 +15,13 @@ function initI18n(locale, fallback) {
   let i18nOptions = {
     locale,
     fallbackLocale: fallback,
-    silentFallbackWarn: true
+    silentFallbackWarn: true,
   }
   return new VueI18n(i18nOptions)
 }
 
 /**
- * Generate internationalized languages to router options configuration
+ * Generate internationalized languages router options configuration
  * @param lang
  * @param routes
  * @param valueKey
@@ -29,13 +30,7 @@ function initI18n(locale, fallback) {
 function generateI18n(lang, routes, valueKey) {
   routes.forEach(route => {
     let keys = getI18nKey(route.fullPath).split('.')
-    let value =
-      valueKey === 'path'
-        ? route[valueKey]
-            .split('/')
-            .filter(item => !item.startsWith(':') && item != '')
-            .join('.')
-        : route[valueKey]
+    let value = valueKey ==='path'? route[valueKey].split('/').filter(item => !item.startsWith(':') && item !='').join('.' ): route[valueKey]
     lang.assignProps(keys, value)
     if (route.children) {
       generateI18n(lang, route.children, valueKey)
@@ -49,14 +44,10 @@ function generateI18n(lang, routes, valueKey) {
  * @param routes
  * @param parentPath
  */
-function formatFullPath(routes, parentPath = '') {
+function formatFullPath(routes, parentPath ='') {
   routes.forEach(route => {
-    let isFullPath = route.path.substring(0, 1) === '/'
-    route.fullPath = isFullPath
-      ? route.path
-      : parentPath === '/'
-      ? parentPath + route.path
-      : parentPath + '/' + route.path
+    let isFullPath = route.path.substring(0, 1) ==='/'
+    route.fullPath = isFullPath? route.path: (parentPath ==='/'? parentPath + route.path: parentPath +'/' + route.path)
     if (route.children) {
       formatFullPath(route.children, route.fullPath)
     }
@@ -70,12 +61,18 @@ function formatFullPath(routes, parentPath = '') {
  */
 function mergeI18nFromRoutes(i18n, routes) {
   formatFullPath(routes)
-  const US = generateI18n(new Object(), routes, 'path')
+  const VI = generateI18n(new Object(), routes,'name')
+  const US = generateI18n(new Object(), routes,'path')
+  i18n.mergeLocaleMessage('VI', VI)
   i18n.mergeLocaleMessage('US', US)
-  const messages = I18n.messages
+  const messages = routesI18n.messages
   Object.keys(messages).forEach(lang => {
     i18n.mergeLocaleMessage(lang, messages[lang])
   })
 }
 
-export { initI18n, mergeI18nFromRoutes, formatFullPath }
+export {
+  initI18n,
+  mergeI18nFromRoutes,
+  formatFullPath
+}

@@ -1,7 +1,7 @@
 import routerMap from './router.map'
-import { parseRoutes } from '@/utils/routerUtil'
+import {parseRoutes} from '@/utils/routerUtil'
 
-// Asynchronous routing configuration
+// router config
 const routesConfig = [
   'login',
   'root',

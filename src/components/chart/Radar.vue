@@ -1,25 +1,25 @@
 <template>
-  <v-chart :forceFit="true" height="400" :data="data" :padding="[20, 20, 95, 20]" :scale="scale">
-    <v-tooltip />
-    <v-axis :dataKey="axis1Opts.dataKey" :line="axis1Opts.line" :tickLine="axis1Opts.tickLine" :grid="axis1Opts.grid" />
-    <v-axis :dataKey="axis2Opts.dataKey" :line="axis2Opts.line" :tickLine="axis2Opts.tickLine" :grid="axis2Opts.grid" />
-    <v-legend dataKey="user" marker="circle" :offset="30" />
-    <v-coord type="polar" radius="0.8" />
-    <v-line position="item*score" color="user" :size="2" />
-    <v-point position="item*score" color="user" :size="4" shape="circle" />
-  </v-chart>
+    <v-chart :forceFit="true" height="400" :data="data" :padding="[20, 20, 95, 20]" :scale="scale">
+      <v-tooltip  />
+      <v-axis :dataKey="axis1Opts.dataKey" :line="axis1Opts.line" :tickLine="axis1Opts.tickLine" :grid="axis1Opts.grid" />
+      <v-axis :dataKey="axis2Opts.dataKey" :line="axis2Opts.line" :tickLine="axis2Opts.tickLine" :grid="axis2Opts.grid" />
+      <v-legend dataKey="user" marker="circle" :offset="30" />
+      <v-coord type="polar" radius="0.8" />
+      <v-line position="item*score" color="user" :size="2" />
+      <v-point position="item*score" color="user" :size="4" shape="circle" />
+    </v-chart>
 </template>
 
 <script>
 const DataSet = require('@antv/data-set')
 
 const sourceData = [
-  { item: 'quote', a: 70, b: 30, c: 40 },
-  { item: 'Word of mouth', a: 60, b: 70, c: 40 },
-  { item: 'Yield', a: 50, b: 60, c: 40 },
-  { item: 'contribution', a: 40, b: 50, c: 40 },
-  { item: 'hotness', a: 60, b: 70, c: 40 },
-  { item: 'quote', a: 70, b: 50, c: 40 }
+   {item:'quote', a: 70, b: 30, c: 40},
+   {item:'Word of mouth', a: 60, b: 70, c: 40},
+   {item:'Yield', a: 50, b: 60, c: 40},
+   {item:'contribution', a: 40, b: 50, c: 40},
+   {item:'hotness', a: 60, b: 70, c: 40},
+   {item:'quote', a: 70, b: 50, c: 40}
 ]
 
 const dv = new DataSet.View().source(sourceData)
@@ -30,13 +30,11 @@ dv.transform({
   value: 'score'
 })
 
-const scale = [
-  {
-    dataKey: 'score',
-    min: 0,
-    max: 80
-  }
-]
+const scale = [{
+  dataKey: 'score',
+  min: 0,
+  max: 80
+}]
 
 const data = dv.rows
 
@@ -65,7 +63,7 @@ const axis2Opts = {
 
 export default {
   name: 'Radar',
-  data() {
+  data () {
     return {
       sourceData,
       data,
@@ -77,4 +75,6 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

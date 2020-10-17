@@ -1,13 +1,13 @@
 <template>
   <a-dropdown>
     <div class="header-avatar" style="cursor: pointer">
-      <!-- <a-avatar class="avatar" size="small" shape="circle" :src="user.avatar" /> -->
-      <!-- <span class="name">{{ user.name }}</span> -->
+      <a-avatar class="avatar" size="small" shape="circle"/>
+      <span class="name"></span>
     </div>
     <a-menu :class="['avatar-menu']" slot="overlay">
       <a-menu-item>
         <a-icon type="user" />
-        <span>Personal Center</span>
+        <span>Personal center</span>
       </a-menu-item>
       <a-menu-item>
         <a-icon type="setting" />
@@ -23,28 +23,31 @@
 </template>
 
 <script>
+
 export default {
   name: 'HeaderAvatar',
-  computed: {},
-  methods: {}
+  computed: {
+  },
+  methods: {
+  }
 }
 </script>
 
 <style lang="less">
-.header-avatar {
-  display: inline-flex;
-  .avatar,
-  .name {
-    align-self: center;
+  .header-avatar{
+    display: inline-flex;
+    .avatar, .name{
+      align-self: center;
+    }
+    .avatar{
+      margin-right: 8px;
+    }
+    .name{
+      font-weight: 500;
+    }
   }
-  .avatar {
-    margin-right: 8px;
+  .avatar-menu{
+    width: 150px;
   }
-  .name {
-    font-weight: 500;
-  }
-}
-.avatar-menu {
-  width: 150px;
-}
+
 </style>

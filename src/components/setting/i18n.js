@@ -33,9 +33,6 @@ module.exports = {
         effect: 'Effect',
         direction: 'Direction'
       },
-      alert:
-        'After copying the configuration code, directly cover all contents in the file src/config/config.js, then restart the server. (Note: only items that are different from the default configuration will be copied)',
-      copy: 'Copy Setting',
       save: 'Save',
       reset: 'Reset'
     },
@@ -71,9 +68,6 @@ module.exports = {
         effect: 'Hiệu ứng',
         direction: 'Hướng'
       },
-      alert:
-        'Sau khi sao chép mã cấu hình, trực tiếp bao gồm tất cả nội dung trong tệp src / config / config.js, sau đó khởi động lại máy chủ. (Lưu ý: chỉ những mục khác với cấu hình mặc định mới được sao chép) ',
-      copy: 'Sao chép Cài đặt',
       save: 'Save',
       reset: 'Reset'
     },
@@ -110,9 +104,6 @@ module.exports = {
         effect: '효과',
         direction: '방향'
       },
-      alert:
-        '구성 코드를 복사 한 후 src / config / config.js 파일의 모든 내용을 직접 덮은 다음 서버를 다시 시작하십시오. (참고 : 기본 구성과 다른 항목 만 복사됩니다.) ',
-      copy: '복사 설정',
       save: '저장',
       reset: '재설정'
     }

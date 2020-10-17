@@ -1,13 +1,15 @@
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+  <a-config-provider :locale="locale">
+    <router-view/>
+  </a-config-provider>
 </template>
+
 <script>
-import { enquireScreen } from './utils/util'
-import { mapState, mapMutations } from 'vuex'
-import themeUtil from '@/utils/themeUtil'
-import { getI18nKey } from '@/utils/routerUtil'
+import {enquireScreen} from './utils/util'
+import {mapState, mapMutations} from 'vuex'
+import themeUtil from '@/utils/themeUtil';
+import {getI18nKey} from '@/utils/routerUtil'
+
 export default {
   name: 'App',
   data() {
@@ -15,13 +17,13 @@ export default {
       locale: {}
     }
   },
-  created() {
+  created () {
     this.setHtmlTitle()
     this.setLanguage(this.lang)
     enquireScreen(isMobile => this.setDevice(isMobile))
   },
   mounted() {
-    this.setWeekModeTheme(this.weekMode)
+   this.setWeekModeTheme(this.weekMode)
   },
   watch: {
     weekMode(val) {
@@ -70,11 +72,10 @@ export default {
       }
     },
     setHtmlTitle() {
-      //feat: add dynamic title form HTML
       const route = this.$route
       const key = route.path === '/' ? 'home.name' : getI18nKey(route.matched[route.matched.length - 1].path)
       document.title = process.env.VUE_APP_NAME + ' | ' + this.$t(key)
-    }
+    },
   }
 }
 </script>
