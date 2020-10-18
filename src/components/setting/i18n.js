@@ -50,8 +50,8 @@ module.exports = {
         mix: 'Mix Menu Layout',
         content: {
           title: 'Chiều rộng nội dung',
-          fluid: 'Chất lỏng',
-          fixed: 'Đã sửa'
+          fluid: 'fluid',
+          fixed: 'Fixed'
         },
         fixedHeader: 'Tiêu đề cố định',
         fixedSideBar: 'Thanh bên cố định'
