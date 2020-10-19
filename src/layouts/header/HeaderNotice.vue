@@ -32,7 +32,7 @@
       </a-spin>
     </div>
     <span @click="fetchNotice" class="header-notice">
-      <a-badge class="notice-badge" count="3">
+      <a-badge class="notice-badge"  count="3">
         <a-icon :class="['header-notice-icon']" type="bell" />
       </a-badge>
     </span>

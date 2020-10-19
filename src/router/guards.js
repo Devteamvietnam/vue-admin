@@ -6,7 +6,7 @@ import NProgress from "nprogress";
 NProgress.configure({ showSpinner: false });
 
 /**
- * 进度条开始
+ * Start of progress bar
  * @param to
  * @param form
  * @param next
@@ -20,7 +20,7 @@ const progressStart = (to, from, next) => {
 };
 
 // /**
-//  * 登录守卫
+//  * Login guard
 //  * @param to
 //  * @param form
 //  * @param next
@@ -29,7 +29,7 @@ const progressStart = (to, from, next) => {
 // const loginGuard = (to, from, next, options) => {
 //   const { message } = options;
 //   if (!loginIgnore.includes(to) && !checkAuthorization()) {
-//     message.warning("登录已失效，请重新登录");
+//     message.warning("Login has expired, please log in again");
 //     next({ path: "/login" });
 //   } else {
 //     next();
@@ -37,7 +37,7 @@ const progressStart = (to, from, next) => {
 // };
 
 /**
- * 权限守卫
+ * Permission guard
  * @param to
  * @param form
  * @param next
@@ -48,7 +48,7 @@ const authorityGuard = (to, from, next, options) => {
   const permissions = store.getters["account/permissions"];
   const roles = store.getters["account/roles"];
   if (!hasAuthority(to, permissions, roles)) {
-    message.warning(`对不起，您无权访问页面: ${to.fullPath}，请联系管理员`);
+    message.warning(`Sorry, you are not authorized to access the page: ${to.fullPath}, please contact the administrator`);
     next({ path: "/403" });
     NProgress.done();
   } else {
@@ -57,7 +57,7 @@ const authorityGuard = (to, from, next, options) => {
 };
 
 /**
- * 混合导航模式下一级菜单跳转重定向
+ * The next level menu redirection in the hybrid navigation mode
  * @param to
  * @param from
  * @param next
@@ -80,7 +80,7 @@ const redirectGuard = (to, from, next, options) => {
 };
 
 /**
- * 进度条结束
+ * End of progress bar
  * @param to
  * @param form
  * @param options

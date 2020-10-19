@@ -1,7 +1,7 @@
 <template>
   <a-dropdown>
-    <div class="header-avatar" style="cursor: pointer">
-      <a-avatar class="avatar" size="small" shape="circle"/>
+    <div class="header-avatar"  style="cursor: pointer">
+      <a-avatar icon="user" class="avatar"  shape="circle" />
       <span class="name"></span>
     </div>
     <a-menu :class="['avatar-menu']" slot="overlay">
