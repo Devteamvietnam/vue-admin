@@ -7,6 +7,17 @@ const view = {
 
 // route map
 const routerMap = {
+  login: {
+    authority: '*',
+    path: '/login',
+    component: () => import('@/pages/login')
+  },
+  root: {
+    path: '/',
+    name: 'Home',
+    redirect: '/login',
+    component: view.tabs
+  },
   dashboard: {
     name: "Dashboard",
     component: view.blank

@@ -7,6 +7,11 @@ const options = {
   mode: 'history',
   routes: [
     {
+      path:'/login',
+      name:'Login page',
+      component: () => import('@/pages/login')
+    },
+    {
       path: "*",
       name: "404",
       component: () => import("@/pages/exception/404")
