@@ -8,7 +8,6 @@
 <script>
 import PageFooter from '@/layouts/footer/PageFooter'
 import {mapState} from 'vuex'
-
 export default {
   name: 'CommonLayout',
   components: {PageFooter},
@@ -22,7 +21,7 @@ export default {
 .common-layout{
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: auto;
   overflow: auto;
   background-color: @layout-body-background;
   background-image: url('https://svgshare.com/i/QhD.svg');
@@ -32,7 +31,6 @@ export default {
     padding: 32px 0;
     flex: 1;
     @media (min-width: 528px){
-
       padding: 200px 0 24px;
     }
   }

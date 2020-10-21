@@ -10,12 +10,7 @@ const routerMap = {
   login: {
     authority: '*',
     path: '/login',
-    component: () => import('@/pages/user/Login')
-  },
-  register: {
-    authority: '*',
-    path: '/register',
-    component: () => import('@/pages/user/Register')
+    component: () => import('@/pages/login')
   },
   root: {
     path: '/',
