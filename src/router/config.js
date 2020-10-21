@@ -9,7 +9,12 @@ const options = {
     {
       path:'/login',
       name:'Login page',
-      component: () => import('@/pages/login')
+      component: () => import('@/pages/user/Login')
+    },
+    {
+      path:'/register',
+      name:'register page',
+      component: () => import('@/pages/user/Register')
     },
     {
       path: "*",
