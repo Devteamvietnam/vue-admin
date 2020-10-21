@@ -10,7 +10,7 @@
     <div class="login">
       <a-form @submit="onSubmit" :form="form">
         <a-tabs size="large" :tabBarStyle="{textAlign:'center'}" style="padding: 0 2px;">
-          <a-tab-pane tab="Register" key="1">
+          <a-tab-pane tab="Login" key="1">
             <a-alert type="error" :closable="true" v-show="error" :message="error" showIcon style="margin-bottom: 24px;" />
             <a-form-item>
               <a-input
@@ -20,16 +20,6 @@
                 v-decorator="['name', {rules: [{ required: true, message:'Please enter the account name', whitespace: true}]}]"
               >
                 <a-icon slot="prefix" type="user" />
-              </a-input>
-            </a-form-item>
-             <a-form-item>
-              <a-input
-                autocomplete="autocomplete"
-                size="large"
-                placeholder="email"
-                v-decorator="['email', {rules: [{ required: true, message:'Please enter the email', whitespace: true}]}]"
-              >
-                <a-icon slot="prefix" type="mail" />
               </a-input>
             </a-form-item>
             <a-form-item>
@@ -45,15 +35,19 @@
             </a-form-item>
           </a-tab-pane>
         </a-tabs>
+        <div>
+          <a-checkbox :checked="false" >Remember me</a-checkbox>
+          <a style="float: right">Forgot password</a>
+        </div>
         <a-form-item>
-          <a-button :loading="logging" style="width: 100%;margin-top: 24px" size="large" htmlType="submit" type="primary">Register</a-button>
+          <a-button :loading="logging" style="width: 100%;margin-top: 24px" size="large" htmlType="submit" type="primary">Log in</a-button>
         </a-form-item>
         <div>
-          Other Register
+          Other login
           <a-icon class="icon" type="github" />
           <a-icon class="icon" type="facebook" />
           <a-icon class="icon" type="google" />
-          <a style="float: right" @click="toLogin" >Login with account</a>
+          <a style="float: right" @click="toRegister" >Register account</a>
         </div>
       </a-form>
     </div>
@@ -88,10 +82,9 @@ export default {
         if (!err) {
           this.logging = true
           const name = this.form.getFieldValue('name')
-          const email = this.form.getFieldValue('email')
           const password = this.form.getFieldValue('password')
           // eslint-disable-next-line no-undef
-          login(name, password, email).then(this.afterLogin)
+          login(name, password).then(this.afterLogin)
         }
       })
     },
@@ -116,8 +109,8 @@ export default {
         this.error = loginRes.message
       }
     },
-    toLogin() {
-      this.$router.push('/login')
+    toRegister() {
+      this.$router.push('/register')
     }
   }
 }
@@ -172,7 +165,6 @@ export default {
         vertical-align: middle;
         cursor: pointer;
         transition: color 0.3s;
-
         &:hover {
           color: @primary-color;
         }

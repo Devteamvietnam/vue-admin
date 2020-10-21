@@ -17,6 +17,3 @@ selenium-debug.log
 *.njsproj
 *.sln
 package-lock.json
-
-#Electron-builder output
-/dist_electron
