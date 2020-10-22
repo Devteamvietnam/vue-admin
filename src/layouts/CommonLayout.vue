@@ -28,7 +28,7 @@ export default {
   background-position-x: center;
   background-size: 100%;
   .content{
-    padding: 32px 0;
+    padding: 100px 0;
     flex: 1;
     @media (min-width: 528px){
       padding: 200px 0 24px;
