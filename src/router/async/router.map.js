@@ -17,6 +17,11 @@ const routerMap = {
     path: '/register',
     component: () => import('@/pages/register')
   },
+  forgot: {
+    authority: '*',
+    path: '/forgot',
+    component: () => import('@/pages/forgot')
+  },
   root: {
     path: '/',
     name: 'Home',

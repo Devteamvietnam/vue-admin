@@ -17,6 +17,11 @@ const options = {
       component: () => import('@/pages/register')
     },
     {
+      path:'/forgot',
+      name:'Forgot page',
+      component: () => import('@/pages/forgot')
+    },
+    {
       path: "*",
       name: "404",
       component: () => import("@/pages/exception/404")
