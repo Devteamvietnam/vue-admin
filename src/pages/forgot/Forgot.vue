@@ -10,44 +10,25 @@
     <div class="login">
       <a-form @submit="onSubmit" :form="form">
         <a-tabs size="large" :tabBarStyle="{textAlign:'center'}" style="padding: 0 2px;">
-          <a-tab-pane tab="Login" key="1">
+          <a-tab-pane tab="Forgot" key="1">
             <a-alert type="error" :closable="true" v-show="error" :message="error" showIcon style="margin-bottom: 24px;" />
             <a-form-item>
               <a-input
                 autocomplete="autocomplete"
                 size="large"
-                placeholder="username"
-                v-decorator="['name', {rules: [{ required: true, message:'Please enter the account name', whitespace: true}]}]"
+                placeholder="Email"
+                v-decorator="['name', {rules: [{ required: true, message:'Please enter the account email', whitespace: true}]}]"
               >
-                <a-icon slot="prefix" type="user" />
-              </a-input>
-            </a-form-item>
-            <a-form-item>
-              <a-input
-                size="large"
-                placeholder="password"
-                autocomplete="autocomplete"
-                type="password"
-                v-decorator="['password', {rules: [{ required: true, message:'Please enter your password', whitespace: true}]}]"
-              >
-                <a-icon slot="prefix" type="lock" />
+                <a-icon slot="prefix" type="mail" />
               </a-input>
             </a-form-item>
           </a-tab-pane>
         </a-tabs>
-        <div>
-          <a-checkbox :checked="false" >Remember me</a-checkbox>
-          <a style="float: right" @click="toForgot">Forgot password</a>
-        </div>
         <a-form-item>
-          <a-button :loading="logging" style="width: 100%;margin-top: 24px" size="large" htmlType="submit" type="primary">Log in</a-button>
+          <a-button :loading="logging" style="width: 100%;" size="large" htmlType="submit" type="primary">Send</a-button>
         </a-form-item>
         <div>
-          Other login
-          <a-icon class="icon" type="github" />
-          <a-icon class="icon" type="facebook" />
-          <a-icon class="icon" type="google" />
-          <a style="float: right" @click="toRegister" >Register account</a>
+          <a style="float: right" @click="toLogin" >Login account</a>
         </div>
       </a-form>
     </div>
@@ -112,8 +93,8 @@ export default {
     toRegister() {
       this.$router.push('/register')
     },
-    toForgot() {
-      this.$router.push('/forgot')
+    toLogin() {
+      this.$router.push('/login')
     }
   }
 }
