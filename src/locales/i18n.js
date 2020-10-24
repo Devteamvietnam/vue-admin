@@ -13,6 +13,10 @@ module.exports = {
          403: {name: '403'},
          500: {name: '500'}
        },
+       account: 
+       {name: 'Tài khoản', 
+       basicsettings: 
+       {name: 'cài đặt cơ bản'}}
     },
     US: {
       home: {name:'Home'},
@@ -27,6 +31,12 @@ module.exports = {
         403: {name: '403'},
         500: {name: '500'}
       },
+      account: {
+        name:'Account',
+        basicsettings: {
+          name:'BasicSettings'
+        }
+      }
     },
     KO: {
       home : {name : '집'},
@@ -41,6 +51,12 @@ module.exports = {
          403 : {name : '403'},
          500 : {name : '500'}
        },
+       account : {
+        name : '계정',
+        basicsettings: {
+          name : '기본 설정'
+        }
+      }
     }
   }
 }

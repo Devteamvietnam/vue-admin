@@ -1,6 +1,6 @@
 import TabsView from "@/layouts/tabs/TabsView";
 import BlankView from "@/layouts/BlankView";
-// import PageView from "@/layouts/PageView";
+import PageView from "@/layouts/PageView";
 
 // Config route
 const options = {
@@ -50,7 +50,7 @@ const options = {
               name: "WorkPlace",
               meta: {
                 page: {
-                  closable: false
+                  closable: true
                 }
               },
               component: () => import("@/pages/dashboard/workplace")
@@ -86,7 +86,23 @@ const options = {
               component: () => import("@/pages/exception/500")
             }
           ]
-        }
+        },
+        {
+          path: "account",
+          name: "Account",
+          meta: {
+            icon: "user",
+            closable: true
+          },
+          component: PageView,
+          children: [
+            {
+              path: "basicsettings",
+              name: "BaseSettings",
+              component: () => import("@/pages/account")
+            }
+          ]
+        },
       ]
     }
   ]
