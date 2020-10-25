@@ -5,6 +5,12 @@ module.exports = {
         title: 'Modify avatar',
         select: 'Select Image',
         save: 'Save'
+      },
+      base: {
+        nikname: 'Nikname',
+        bio: 'Bio',
+        email: 'email',
+        password: 'password'
       }
     },
     VI: {
