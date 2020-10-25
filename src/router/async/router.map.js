@@ -17,11 +17,6 @@ const routerMap = {
     path: '/register',
     component: () => import('@/pages/register')
   },
-  forgot: {
-    authority: '*',
-    path: '/forgot',
-    component: () => import('@/pages/forgot')
-  },
   root: {
     path: '/',
     name: 'Home',
@@ -44,6 +39,15 @@ const routerMap = {
     name: "Exception",
     icon: "warning",
     component: view.blank
+  },
+  account: {
+    name: "Account",
+    icon: "user",
+    component: view.page
+  },
+  basicsettings: {
+    name: "BaseSettings",
+    component: () => import("@/pages/account")
   },
   exp403: {
     authority: "*",
