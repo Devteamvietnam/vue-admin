@@ -1,5 +1,5 @@
 <template>
-  <common-layout>
+  <user-layout>
     <div class="top">
       <div class="header">
         <img alt="logo" class="logo" src="@/assets/img/logo.png" />
@@ -57,11 +57,11 @@
         </div>
       </a-form>
     </div>
-  </common-layout>
+  </user-layout>
 </template>
 
 <script>
-import CommonLayout from '@/layouts/CommonLayout'
+import UserLayout from '@/layouts/UserLayout'
 import { setAuthorization } from '@/utils/request'
 import { loadRoutes } from '@/utils/routerUtil'
 import {mapMutations} from 'vuex'
@@ -74,7 +74,7 @@ export default {
       form: this.$form.createForm(this)
     }
   },
-  components: {CommonLayout},
+  components: {UserLayout},
   computed: {
     systemName () {
       return this.$store.state.setting.systemName
