@@ -56,7 +56,7 @@
 
 <script>
 import UserLayout from '@/layouts/UserLayout'
-import { setAuthorization } from '@/utils/request'
+import { setAuthorization } from '@/service/user/request'
 import { loadRoutes } from '@/utils/routerUtil'
 import {mapMutations} from 'vuex'
 export default {

@@ -1,5 +1,5 @@
 import {loadRoutes, loadGuards, setAppOptions} from'@/utils/routerUtil'
-import {loadInterceptors} from'@/utils/request'
+import {loadInterceptors} from'@/service/user/request'
 import guards from'@/router/guards'
 import interceptors from'@/utils/axios-interceptors'
 
