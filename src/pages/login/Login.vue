@@ -16,8 +16,8 @@
               <a-input
                 autocomplete="autocomplete"
                 size="large"
-                placeholder="username"
-                v-decorator="['name', {rules: [{ required: true, message:'Please enter the account name', whitespace: true}]}]"
+                placeholder="email"
+                v-decorator="['email', {rules: [{ required: true, message:'Please enter the account email', whitespace: true}]}]"
               >
                 <a-icon slot="prefix" type="user" />
               </a-input>
@@ -56,7 +56,7 @@
 
 <script>
 import UserLayout from '@/layouts/UserLayout'
-import { setAuthorization } from '@/service/user/request'
+import { setAuthorization } from '@/utils/request'
 import { loadRoutes } from '@/utils/routerUtil'
 import {mapMutations} from 'vuex'
 export default {
@@ -81,10 +81,10 @@ export default {
       this.form.validateFields((err) => {
         if (!err) {
           this.logging = true
-          const name = this.form.getFieldValue('name')
+          const email = this.form.getFieldValue('email')
           const password = this.form.getFieldValue('password')
           // eslint-disable-next-line no-undef
-          login(name, password).then(this.afterLogin)
+          login(email, password).then(this.afterLogin)
         }
       })
     },
@@ -96,8 +96,7 @@ export default {
         this.setUser(user)
         this.setPermissions(permissions)
         this.setRoles(roles)
-        setAuthorization({token: loginRes.data.token, expireAt: new Date(loginRes.data.expireAt)})
-        // Get routing configuration
+        setAuthorization({accessToken: loginRes.data.accessToken, expireAt: new Date(loginRes.data.expireAt)})
         // eslint-disable-next-line no-undef
         getRoutesConfig().then(result => {
           const routesConfig = result.data.data
