@@ -38,7 +38,7 @@ module.exports = {
   devServer: {
     port: 8085
     // proxy: {
-    //   '/api': { //Here must be consistent with the API_PROXY_PREFIX value in /services/api.js
+    //   '/api': { //Here must be consistent with the API_PROXY_PREFIX value in /service/api.js
     //     target: process.env.VUE_APP_API_BASE_URL,
     //     changeOrigin: true,
     //     pathRewrite: {
