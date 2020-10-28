@@ -1,7 +1,13 @@
+
 const state = {}
 const getters = {}
 const mutations = {}
-const actions = {}
+const actions = {
+  login() {
+   console.log("login from store")
+
+  }
+}
 
 export default {
   namespaced: true,

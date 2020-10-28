@@ -8,7 +8,7 @@
       <div class="desc">The Platform Admin With Vue</div>
     </div>
     <div class="login">
-      <a-form @submit="onSubmit" :form="form">
+      <a-form @submit.prevent="login" :form="form">
         <a-tabs size="large" :tabBarStyle="{textAlign:'center'}" style="padding: 0 2px;">
           <a-tab-pane tab="Login" key="1">
             <a-alert type="error" :closable="true" v-show="error" :message="error" showIcon style="margin-bottom: 24px;" />
@@ -75,6 +75,11 @@ export default {
     }
   },
   methods: {
+    login() {
+      console.log("login func from page/login")
+      this.$store.dispatch("auth/login")
+    },
+
     ...mapMutations('account', ['setUser', 'setPermissions', 'setRoles']),
     onSubmit (event) {
       event.preventDefault()
