@@ -80,15 +80,10 @@ function loadRoutes(routesConfig) {
       console.error('the usage of signature loadRoutes({router, store, i18n}, routesConfig) is out of date, please use the new signature: loadRoutes(routesConfig).')
     }
   }
+
   // Application configuration
   const {router, store, i18n} = appOptions
 
-  // If routesConfig has a value, update it to the local, otherwise get it from the local
-  if (routesConfig) {
-    store.commit('permissions/setRoutesConfig', routesConfig)
-  } else {
-    routesConfig = store.getters['permissions/routesConfig']
-  }
   // If asynchronous routing is enabled, load the asynchronous routing configuration
   const asyncRoutes = store.state.setting.asyncRoutes
   if (asyncRoutes) {

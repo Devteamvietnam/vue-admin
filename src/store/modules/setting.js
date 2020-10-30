@@ -1,7 +1,7 @@
 import config from '@/config'
 import {ADMIN} from '@/config/default'
 import {formatFullPath} from '@/utils/i18n'
-import {filterMenu} from '@/utils/authority-utils'
+import {filterMenu} from '@/utils/authority-router'
 import {getLocalSetting} from '@/utils/themeUtil'
 
 const localSetting = getLocalSetting(true)
@@ -19,10 +19,9 @@ export default {
     ...localSetting
   },
   getters: {
-    menuData(state, getters, rootState) {
+    menuData(state) {
       if (state.filterMenu) {
-        const { roles} = rootState.permissions
-        filterMenu(state.menuData, roles)
+        filterMenu(state.menuData)
       }
       return state.menuData
     },

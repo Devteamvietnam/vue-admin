@@ -1,17 +1,17 @@
 /**
  * Determine whether there is routing permission
  * @param authority routing authority configuration
- * @param permissions user permission collection
  * @returns {boolean|*}
  */
-function hasPermission(authority, permissions) {
+// show drawer
+function hasPermission(authority) {
   let required ='*'
   if (typeof authority ==='string') {
     required = authority
   } else if (typeof authority ==='object') {
     required = authority.permission
   }
-  return required ==='*' || (permissions && permissions.findIndex(item => item === required || item.id === required) !== -1)
+  return required ==='*' || (authority && authority.findIndex(item => item === required || item.id === required) !== -1)
 }
 
 /**
@@ -48,14 +48,13 @@ function hasAnyRole(required, roles) {
 /**
  * Routing permission verification
  * @param route route
- * @param permissions user permission collection
  * @param roles user role collection
  * @returns {boolean}
  */
-function hasAuthority(route, permissions, roles) {
+function hasAuthority(route, roles) {
   const authorities = [...route.meta.pAuthorities, route.meta.authority]
   for (let authority of authorities) {
-    if (!hasPermission(authority, permissions) && !hasRole(authority, roles)) {
+    if (!hasPermission(authority) && !hasRole(authority, roles)) {
       return false
     }
   }
@@ -68,14 +67,14 @@ function hasAuthority(route, permissions, roles) {
  * @param permissions
  * @param roles
  */
-function filterMenu(menuData, permissions, roles) {
+function filterMenu(menuData, roles) {
   menuData.forEach(menu => {
     if (menu.meta && menu.meta.invisible === undefined) {
-      if (!hasAuthority(menu, permissions, roles)) {
+      if (!hasAuthority(menu, roles)) {
         menu.meta.invisible = true
       }
       if (menu.children && menu.children.length> 0) {
-        filterMenu(menu.children, permissions, roles)
+        filterMenu(menu.children, roles)
       }
     }
   })
