@@ -1,5 +1,5 @@
 // ant color
-const ANTD = {
+const DEV = {
   primary: {
     color: '#1890ff',
     warning: '#faad14',
@@ -81,4 +81,4 @@ const ANTD = {
     }
   }
 }
-module.exports = ANTD
+module.exports = DEV

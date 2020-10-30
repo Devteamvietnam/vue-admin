@@ -1,7 +1,7 @@
 import config from '@/config'
 import {ADMIN} from '@/config/default'
 import {formatFullPath} from '@/utils/i18n'
-import {filterMenu} from '@/utils/authority-utils'
+import {filterMenu} from '@/utils/authority-router'
 import {getLocalSetting} from '@/utils/themeUtil'
 
 const localSetting = getLocalSetting(true)
