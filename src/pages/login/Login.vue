@@ -56,8 +56,6 @@
 
 <script>
 import UserLayout from '@/layouts/UserLayout'
-import { loadRoutes } from '@/utils/routerUtil'
-import {mapMutations} from 'vuex'
 export default {
   name: 'Login',
     data () {
@@ -74,7 +72,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('account', ['setUser', 'setPermissions', 'setRoles']),
     onSubmit (event) {
       event.preventDefault()
       this.form.validateFields((err) => {
@@ -91,19 +88,9 @@ export default {
       this.logging = false
       const loginRes = res.data
       if (loginRes.code >= 0) {
-        const {user, permissions, roles} = loginRes.data
+        const {user, roles} = loginRes.data
         this.setUser(user)
-        this.setPermissions(permissions)
         this.setRoles(roles)
-        // eslint-disable-next-line no-undef
-        getRoutesConfig().then(result => {
-          const routesConfig = result.data.data
-          loadRoutes(routesConfig)
-          this.$router.push('/dashboard/workplace')
-          this.$message.success(loginRes.message, 3)
-        })
-      } else {
-        this.error = loginRes.message
       }
     },
     toRegister() {
