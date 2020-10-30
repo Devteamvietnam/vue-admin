@@ -260,7 +260,7 @@ export default {
       const page = this.pageList.find(item => item.fullPath === route.fullPath)
       page.unclose = route.meta && route.meta.page && (route.meta.page.closable === false)
       if (!page._init_) {
-        page.cachedKey = this.$refs.tabContent.$vnode.key
+        page.cachedKey = this.$refs.tabContent.key
         page._init_ = true
       }
     },

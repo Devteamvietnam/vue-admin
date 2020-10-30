@@ -7,7 +7,7 @@
     <div v-if="fixedSideBar && !isMobile" :style="`width: ${sideMenuWidth}; min-width: ${sideMenuWidth};max-width: ${sideMenuWidth};`" class="virtual-side"></div>
     <drawer v-if="!hideSetting" v-model="showSetting" placement="right">
       <div class="setting" slot="handler">
-        <a-icon :type="showSetting ? 'close' : 'setting'"/>
+        <a-avatar :src="avatar" shape="circle" :type="showSetting ? 'close' : 'setting'" />
       </div>
       <setting />
     </drawer>
@@ -44,7 +44,8 @@ export default {
       minHeight: minHeight,
       collapsed: false,
       showSetting: false,
-      drawerOpen: false
+      drawerOpen: false,
+      avatar: 'https://avatars3.githubusercontent.com/u/55986641?s=460&u=2b38c969e4e0c6f56a6052112c14383408f9e2a3&v=4'
     }
   },
   provide() {
@@ -159,9 +160,9 @@ export default {
       color: @base-bg-color;
       border-radius: 5px 0 0 5px;
       line-height: 40px;
-      font-size: 22px;
-      width: 40px;
-      height: 40px;
+      font-size: 20px;
+      width: 43px;
+      height: 45px;
       box-shadow: -2px 0 8px @shadow-color;
     }
   }
