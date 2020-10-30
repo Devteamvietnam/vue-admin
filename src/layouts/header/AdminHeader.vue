@@ -50,7 +50,7 @@ export default {
         { key: 'KO', name: 'Korea', alias: 'Korea' },
         { key: 'VI', name: 'VietNam', alias: 'ViệtNam' }
       ],
-      searchActive: false
+      searchActive: false,
     }
   },
   computed: {
