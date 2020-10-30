@@ -1,7 +1,7 @@
 import routerMap from './router.map'
 import {parseRoutes} from '@/utils/routerUtil'
 
-// router config
+// router config // redirect error if user == null
 const routesConfig = [
   'login',
   'root',

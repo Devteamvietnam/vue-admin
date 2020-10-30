@@ -3,6 +3,7 @@
  * @param authority routing authority configuration
  * @returns {boolean|*}
  */
+// show drawer
 function hasPermission(authority) {
   let required ='*'
   if (typeof authority ==='string') {

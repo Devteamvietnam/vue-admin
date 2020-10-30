@@ -5,7 +5,7 @@ const view = {
   page: () => import("@/layouts/PageView")
 };
 
-// route map
+// route map local
 const routerMap = {
   login: {
     authority: '*',

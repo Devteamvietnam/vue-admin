@@ -19,10 +19,9 @@ export default {
     ...localSetting
   },
   getters: {
-    menuData(state, getters, rootState) {
+    menuData(state) {
       if (state.filterMenu) {
-        const { roles} = rootState.permissions
-        filterMenu(state.menuData, roles)
+        filterMenu(state.menuData)
       }
       return state.menuData
     },
