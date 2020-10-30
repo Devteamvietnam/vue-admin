@@ -1,4 +1,3 @@
 import setting from './setting'
 
-
-export default {setting}
+export default { setting}
