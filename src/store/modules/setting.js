@@ -21,8 +21,8 @@ export default {
   getters: {
     menuData(state, getters, rootState) {
       if (state.filterMenu) {
-        const {permissions, roles} = rootState.account
-        filterMenu(state.menuData, permissions, roles)
+        const { roles} = rootState.permissions
+        filterMenu(state.menuData, roles)
       }
       return state.menuData
     },

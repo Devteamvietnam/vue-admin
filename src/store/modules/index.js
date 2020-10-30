@@ -1,5 +1,5 @@
-import account from './account'
+import permissions from './permissions'
 import setting from './setting'
-import auth from './auth'
 
-export default {account, setting, auth}
+
+export default {permissions, setting}

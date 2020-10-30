@@ -1,7 +1,5 @@
 import {loadRoutes, loadGuards, setAppOptions} from'@/utils/routerUtil'
-import {loadInterceptors} from'@/utils/request'
 import guards from'@/router/guards'
-import interceptors from'@/utils/axios-interceptors'
 
 /**
   * Booting method
@@ -14,8 +12,6 @@ import interceptors from'@/utils/axios-interceptors'
 function bootstrap({router, store, i18n, message}) {
    // Set application configuration
    setAppOptions({router, store, i18n})
-   // Load the axios interceptor
-   loadInterceptors(interceptors, {router, store, i18n, message})
    // Load route
    loadRoutes()
    // Load routing guard

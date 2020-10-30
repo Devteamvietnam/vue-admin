@@ -62,7 +62,6 @@
 
 <script>
 import UserLayout from '@/layouts/UserLayout'
-import { setAuthorization } from '@/utils/request'
 import { loadRoutes } from '@/utils/routerUtil'
 import {mapMutations} from 'vuex'
 export default {
@@ -103,7 +102,6 @@ export default {
         this.setUser(user)
         this.setPermissions(permissions)
         this.setRoles(roles)
-        setAuthorization({token: loginRes.data.token, expireAt: new Date(loginRes.data.expireAt)})
         // Get routing configuration
         // eslint-disable-next-line no-undef
         getRoutesConfig().then(result => {

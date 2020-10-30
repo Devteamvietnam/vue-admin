@@ -113,13 +113,13 @@ export default {
       if (this.pageList.length === 1) {
         return this.$message.warning(this.$t('warn'))
       }
-      //清除缓存
+      //clear cache
       let index = this.pageList.findIndex(item => item.fullPath === key)
       this.clearCaches = this.pageList.splice(index, 1).map(page => page.cachedKey)
       if (next) {
         this.$router.push(next)
       } else if (key === this.activePage) {
-        index = index >= this.pageList.length ? this.pageList.length - 1 : index
+        index = index >= this.pageList.length? this.pageList.length-1: index
         this.activePage = this.pageList[index].fullPath
         this.$router.push(this.activePage)
       }
@@ -131,7 +131,7 @@ export default {
       if (key === this.activePage) {
         this.reloadContent(() => page.loading = false)
       } else {
-        // 其实刷新很快，加这个延迟纯粹为了 loading 状态多展示一会儿，让用户感知刷新这一过程
+        // In fact, the refresh is very fast, adding this delay is purely to display the loading state for a while, so that the user can perceive the refreshing process
         setTimeout(() => page.loading = false, 500)
       }
     },
@@ -152,11 +152,11 @@ export default {
       }
     },
     closeOthers (pageKey) {
-      // 清除缓存
+      // clear cache
       const clearPages = this.pageList.filter(item => item.fullPath !== pageKey && !item.unclose)
       this.clearCaches = clearPages.map(item => item.cachedKey)
       this.pageList = this.pageList.filter(item => !clearPages.includes(item))
-      // 判断跳转
+      // Judge jump
       if (this.activePage != pageKey) {
         this.activePage = pageKey
         this.$router.push(this.activePage)
@@ -164,23 +164,23 @@ export default {
     },
     closeLeft (pageKey) {
       const index = this.pageList.findIndex(item => item.fullPath === pageKey)
-      // 清除缓存
-      const clearPages = this.pageList.filter((item, i) => i < index && !item.unclose)
+      // clear cache
+      const clearPages = this.pageList.filter((item, i) => i <index && !item.unclose)
       this.clearCaches = clearPages.map(item => item.cachedKey)
       this.pageList = this.pageList.filter(item => !clearPages.includes(item))
-      // 判断跳转
+      // Judge jump
       if (!this.pageList.find(item => item.fullPath === this.activePage)) {
         this.activePage = pageKey
         this.$router.push(this.activePage)
       }
     },
     closeRight (pageKey) {
-      // 清除缓存
+      // clear cache
       const index = this.pageList.findIndex(item => item.fullPath === pageKey)
-      const clearPages = this.pageList.filter((item, i) => i > index && !item.unclose)
+      const clearPages = this.pageList.filter((item, i) => i> index && !item.unclose)
       this.clearCaches = clearPages.map(item => item.cachedKey)
       this.pageList = this.pageList.filter(item => !clearPages.includes(item))
-      // 判断跳转
+      // Judge jump
       if (!this.pageList.find(item => item.fullPath === this.activePage)) {
         this.activePage = pageKey
         this.$router.push(this.activePage)
@@ -196,7 +196,7 @@ export default {
         this.refreshing = false
         this.$nextTick(() => {
           this.setCachedKey(this.$route)
-          if (typeof onLoaded === 'function') {
+          if (typeof onLoaded ==='function') {
             onLoaded.apply(this, [])
           }
         })
@@ -206,7 +206,7 @@ export default {
       return this.$t(getI18nKey(page.keyPath))
     },
     /**
-     * 添加监听器
+     * Add a listener
      */
     addListener() {
       window.addEventListener('page:close', this.closePageListener)
@@ -214,7 +214,7 @@ export default {
       window.addEventListener('unload', this.unloadListener)
     },
     /**
-     * 移出监听器
+     * Remove the listener
      */
     removeListener() {
       window.removeEventListener('page:close', this.closePageListener)
@@ -222,24 +222,24 @@ export default {
       window.removeEventListener('unload', this.unloadListener)
     },
     /**
-     * 页签关闭事件监听
-     * @param event 页签关闭事件
+     * Tab close event monitoring
+     * @param event tab closing event
      */
     closePageListener(event) {
       const {closeRoute, nextRoute} = event.detail
-      const closePath = typeof closeRoute === 'string' ? closeRoute : closeRoute.path
+      const closePath = typeof closeRoute ==='string'? closeRoute: closeRoute.path
       this.remove(closePath, nextRoute)
     },
     /**
-     * 页面刷新事件监听
-     * @param event 页签关闭事件
+     * Page refresh event monitoring
+     * @param event tab closing event
      */
     refreshPageListener(event) {
       const {pageKey} = event.detail
       this.refresh(pageKey)
     },
     /**
-     * 页面 unload 事件监听器，添加页签到 session 缓存，用于刷新时保留页签
+     * Page unload event listener, add tabs to the session cache, to keep tabs when refreshing
      */
     unloadListener() {
       const tabs = this.pageList.map(item => ({...item, _init_: false}))
@@ -247,14 +247,14 @@ export default {
     },
     createPage(route) {
       return {
-        keyPath: route.matched[route.matched.length - 1].path,
+        keyPath: route.matched[route.matched.length-1].path,
         fullPath: route.fullPath, loading: false,
         unclose: route.meta && route.meta.page && (route.meta.page.closable === false),
       }
     },
     /**
-     * 设置页面缓存的key
-     * @param route 页面对应的路由
+     * Set the key of page cache
+     * @param route The route corresponding to the page
      */
     setCachedKey(route) {
       const page = this.pageList.find(item => item.fullPath === route.fullPath)
@@ -265,7 +265,7 @@ export default {
       }
     },
     /**
-     * 加载缓存的 tabs
+     * Load cached tabs
      */
     loadCachedTabs() {
       const cachedTabsStr = sessionStorage.getItem(process.env.VUE_APP_TBAS_KEY)

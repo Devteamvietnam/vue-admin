@@ -1,6 +1,4 @@
-import { hasAuthority } from "@/utils/authority-utils";
 // import { loginIgnore } from "@/router/index";
-// import { checkAuthorization } from "@/utils/request";
 import NProgress from "nprogress";
 
 NProgress.configure({ showSpinner: false });
@@ -28,33 +26,13 @@ const progressStart = (to, from, next) => {
 //  */
 // const loginGuard = (to, from, next, options) => {
 //   const { message } = options;
-//   if (!loginIgnore.includes(to) && !checkAuthorization()) {
+//   if (!loginIgnore.includes(to)) {
 //     message.warning("Login has expired, please log in again");
 //     next({ path: "/login" });
 //   } else {
 //     next();
 //   }
 // };
-
-/**
- * Permission guard
- * @param to
- * @param form
- * @param next
- * @param options
- */
-const authorityGuard = (to, from, next, options) => {
-  const { store, message } = options;
-  const permissions = store.getters["account/permissions"];
-  const roles = store.getters["account/roles"];
-  if (!hasAuthority(to, permissions, roles)) {
-    message.warning(`Sorry, you are not authorized to access the page: ${to.fullPath}, please contact the administrator`);
-    next({ path: "/403" });
-    NProgress.done();
-  } else {
-    next();
-  }
-};
 
 /**
  * The next level menu redirection in the hybrid navigation mode
@@ -91,6 +69,6 @@ const progressDone = () => {
 };
 
 export default {
-  beforeEach: [progressStart, authorityGuard, redirectGuard],
+  beforeEach: [progressStart, redirectGuard],
   afterEach: [progressDone]
 };
