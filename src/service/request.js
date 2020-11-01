@@ -50,7 +50,7 @@ request.interceptors.request.use(config => {
     // if token exists
    // Let each request carry a custom token, please modify it according to the actual situation
   if (token) {
-    config.headers['Access-Token'] = token
+    config.headers['ACCESS_TOKEN'] = token
   }
   return config
 }, errorHandler)

@@ -33,7 +33,7 @@ const options = {
     },
     {
       path: "/",
-      name: "Login",
+      name: "Home",
       component: TabsView,
       // redirect: '/login',
       children: [

@@ -71,8 +71,6 @@ function setAppOptions(options) {
  * @param routesConfig {RouteConfig[]} route configuration
  */
 function loadRoutes(routesConfig) {
-  //Compatible with versions below 0.6.1
-  /*************** compatible version <v0.6.1 *****************/
   if (arguments.length> 0) {
     const arg0 = arguments[0]
     if (arg0.router || arg0.i18n || arg0.store) {
