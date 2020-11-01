@@ -8,48 +8,59 @@
       <div class="desc">The Platform Admin With Vue</div>
     </div>
     <div class="login">
-      <a-form @submit="onSubmit" :form="form">
+      <a-form-model @submit="handleSubmit" :model="user" @submit.native.prevent>
         <a-tabs size="large" :tabBarStyle="{textAlign:'center'}" style="padding: 0 2px;">
           <a-tab-pane tab="Login" key="1">
             <a-alert type="error" :closable="true" v-show="error" :message="error" showIcon style="margin-bottom: 24px;" />
-            <a-form-item>
+            <a-form-model-item>
               <a-input
                 autocomplete="autocomplete"
                 size="large"
+                id="email"
+                ref="email"
                 placeholder="email"
-                v-decorator="['email', {rules: [{ required: true, message:'Please enter the account email', whitespace: true}]}]"
+                v-model="user.email"
+                required
               >
                 <a-icon slot="prefix" type="user" />
               </a-input>
-            </a-form-item>
-            <a-form-item>
+            </a-form-model-item>
+            <a-form-model-item>
               <a-input
                 size="large"
+                id="password"
+                ref="password"
                 placeholder="password"
                 autocomplete="autocomplete"
                 type="password"
-                v-decorator="['password', {rules: [{ required: true, message:'Please enter your password', whitespace: true}]}]"
+                required
+                v-model="user.password"
               >
                 <a-icon slot="prefix" type="lock" />
               </a-input>
-            </a-form-item>
+            </a-form-model-item>
           </a-tab-pane>
         </a-tabs>
         <div>
           <a-checkbox :checked="false" >Remember me</a-checkbox>
           <a style="float: right" @click="toForgot">Forgot password</a>
         </div>
-        <a-form-item>
-          <a-button :loading="logging" style="width: 100%;margin-top: 24px" size="large" htmlType="submit" type="primary">Log in</a-button>
-        </a-form-item>
-        <div>
+        <a-form-model-item>
+          <a-button 
+          :loading="logging" 
+          style="width: 100%;margin-top: 24px" 
+          size="large" html-type="submit"
+          :disabled="user.email === '' || user.password === ''"
+          type="primary">Log in</a-button>
+        </a-form-model-item>
+        <div style="width: 100%;margin-top: 24px">
           Other login
           <a-icon class="icon" type="github" />
           <a-icon class="icon" type="facebook" />
           <a-icon class="icon" type="google" />
           <a style="float: right" @click="toRegister" >Register account</a>
         </div>
-      </a-form>
+      </a-form-model>
     </div>
   </user-layout>
 </template>
@@ -62,7 +73,10 @@ export default {
     return {
       logging: false,
       error: '',
-      form: this.$form.createForm(this)
+      user: {
+        email: '',
+        password: '',
+      }
     }
   },
   components: {UserLayout},
@@ -72,26 +86,8 @@ export default {
     }
   },
   methods: {
-    onSubmit (event) {
-      event.preventDefault()
-      this.form.validateFields((err) => {
-        if (!err) {
-          this.logging = true
-          const email = this.form.getFieldValue('email')
-          const password = this.form.getFieldValue('password')
-          // eslint-disable-next-line no-undef
-          login(email, password).then(this.afterLogin)
-        }
-      })
-    },
-     afterLogin(res) {
-      this.logging = false
-      const loginRes = res.data
-      if (loginRes.code >= 0) {
-        const {user, roles} = loginRes.data
-        this.setUser(user)
-        this.setRoles(roles)
-      }
+    handleSubmit() {
+      console.log(this.user);
     },
     toRegister() {
       this.$router.push('/register')
