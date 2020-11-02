@@ -1,4 +1,3 @@
-// import { loginIgnore } from "@/router/index";
 import NProgress from "nprogress";
 
 NProgress.configure({ showSpinner: false });
@@ -17,22 +16,29 @@ const progressStart = (to, from, next) => {
   next();
 };
 
-// /**
-//  * Login guard
-//  * @param to
-//  * @param form
-//  * @param next
-//  * @param options
-//  */
-// const loginGuard = (to, from, next, options) => {
-//   const { message } = options;
-//   if (!loginIgnore.includes(to)) {
-//     message.warning("Login has expired, please log in again");
-//     next({ path: "/login" });
-//   } else {
-//     next();
-//   }
-// };
+  // redirect /login
+
+/**
+ * Login guard
+ * @param to
+ * @param form
+ * @param next
+ * @param options
+ */
+const loginGuard = (to, from, next) => {
+  const user = localStorage.getItem('user')
+  if (user === null) {
+    if (to.path.search(/admin/) !== -1) {
+      next({
+        path: '/login'
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+};
 
 /**
  * The next level menu redirection in the hybrid navigation mode
@@ -69,6 +75,6 @@ const progressDone = () => {
 };
 
 export default {
-  beforeEach: [progressStart, redirectGuard],
+  beforeEach: [progressStart, redirectGuard,loginGuard],
   afterEach: [progressDone]
 };
