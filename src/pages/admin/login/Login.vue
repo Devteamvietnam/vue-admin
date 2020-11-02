@@ -9,38 +9,38 @@
     </div>
     <div class="login">
       <a-form-model @submit="handleSubmit" :model="user" @submit.native.prevent>
-        <a-tabs size="large" :tabBarStyle="{textAlign:'center'}" style="padding: 0 2px;">
-          <a-tab-pane tab="Login" key="1">
-            <a-alert type="error" :closable="true" v-show="error" :message="error" showIcon style="margin-bottom: 24px;" />
             <a-form-model-item>
               <a-input
                 autocomplete="autocomplete"
                 size="large"
+                allow-clear
                 id="email"
                 ref="email"
-                placeholder="email"
+                placeholder="Email"
                 v-model="user.email"
                 required
               >
+                <a-tooltip slot="suffix" title="Using email to login">
+                  <a-icon type="info-circle" style="color: rgba(0,0,0,.45)" />
+                </a-tooltip>
                 <a-icon slot="prefix" type="user" />
               </a-input>
             </a-form-model-item>
             <a-form-model-item>
-              <a-input
+              <a-input-password
                 size="large"
                 id="password"
                 ref="password"
-                placeholder="password"
+                allow-clear
+                placeholder="Password"
                 autocomplete="autocomplete"
                 type="password"
                 required
                 v-model="user.password"
               >
                 <a-icon slot="prefix" type="lock" />
-              </a-input>
+              </a-input-password>
             </a-form-model-item>
-          </a-tab-pane>
-        </a-tabs>
         <div>
           <a-checkbox :checked="false" >Remember me</a-checkbox>
           <a style="float: right" @click="toForgot">Forgot password</a>
@@ -53,13 +53,6 @@
           :disabled="user.email === '' || user.password === ''"
           type="primary">Log in</a-button>
         </a-form-model-item>
-        <div style="width: 100%;margin-top: 24px">
-          Other login
-          <a-icon class="icon" type="github" />
-          <a-icon class="icon" type="facebook" />
-          <a-icon class="icon" type="google" />
-          <a style="float: right" @click="toRegister" >Register account</a>
-        </div>
       </a-form-model>
     </div>
   </user-layout>
@@ -67,27 +60,60 @@
 
 <script>
 import UserLayout from '@/layouts/UserLayout'
+import User from '@/service/login/user'
+import { timeFix } from '@/utils/util'
 export default {
   name: 'Login',
     data () {
     return {
       logging: false,
       error: '',
-      user: {
-        email: '',
-        password: '',
-      }
+      user: new User('', ''),
     }
   },
   components: {UserLayout},
   computed: {
     systemName () {
       return this.$store.state.setting.systemName
-    }
+    },
   },
   methods: {
-    handleSubmit() {
-      console.log(this.user);
+    handleSubmit () {
+      if (this.user.email && this.user.password) {
+        console.log(this.user)
+        this
+          .$store
+          .dispatch('auth/login', this.user)
+          .then(() => {
+            this.$notification.success({
+              message: 'Login successfully',
+               description: `${timeFix()}，Welcome Back Bro!`
+            })
+            this
+              .$router
+              .push('/admin/dashboard/workplace')
+          })
+          .catch((error) => {
+            if (error.response) {
+              if (error.response.status === 401) {
+               this.$notification.error({
+                message: 'Error',
+                description:
+                  'Email or Password not found. Please try again',
+              })
+              } else if (error.response.status === 404) {
+                this.$notification.error({
+                  message: 'Error',
+                  description:
+                    'Network error, Not Found. Please try again',
+                })
+              }
+            }
+          })
+          . finally(() => {
+            this.loading = false
+          })
+      }
     },
     toRegister() {
       this.$router.push('/register')

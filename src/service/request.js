@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '@/store'
 import notification from 'ant-design-vue/es/notification'
 import { VueAxios } from './axios'
-export const ACCESS_TOKEN = 'ACCESS_TOKEN'
+export const ACCESS_TOKEN = 'accessToken'
 
 // Create axios instance
 const request = axios.create({
@@ -10,7 +10,7 @@ const request = axios.create({
   baseURL: process.env.VUE_APP_API_BASE_URL,
   timeout: 3000, // Request timeout
   headers : { 
-    'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN') 
+    'Authorization': 'Bearer ' + localStorage.getItem('accessToken') 
   }
 
 })
@@ -50,7 +50,7 @@ request.interceptors.request.use(config => {
     // if token exists
    // Let each request carry a custom token, please modify it according to the actual situation
   if (token) {
-    config.headers['ACCESS_TOKEN'] = token
+    config.headers['accessToken'] = token
   }
   return config
 }, errorHandler)

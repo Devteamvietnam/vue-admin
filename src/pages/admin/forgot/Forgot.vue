@@ -7,45 +7,49 @@
       </div>
       <div class="desc">The Platform Admin With Vue</div>
     </div>
-    <div class="login">
-      <a-form @submit="onSubmit" :form="form">
-        <a-tabs size="large" :tabBarStyle="{textAlign:'center'}" style="padding: 0 2px;">
-          <a-tab-pane tab="Forgot" key="1">
+    <div class="forgot">
+      <a-form-model >
             <a-alert type="error" :closable="true" v-show="error" :message="error" showIcon style="margin-bottom: 24px;" />
-            <a-form-item>
+            <a-form-model-item>
               <a-input
                 autocomplete="autocomplete"
                 size="large"
+                allow-clear
                 placeholder="Email"
-                v-decorator="['name', {rules: [{ required: true, message:'Please enter the account email', whitespace: true}]}]"
+                ref="email"
+                id="email"
+                v-model="forgot.email"
               >
                 <a-icon slot="prefix" type="mail" />
               </a-input>
-            </a-form-item>
-          </a-tab-pane>
-        </a-tabs>
-        <a-form-item>
-          <a-button :loading="logging" style="width: 100%;" size="large" htmlType="submit" type="primary">Send</a-button>
-        </a-form-item>
+            </a-form-model-item>
+        <a-form-model-item>
+          <a-button 
+          :loading="logging" 
+          style="width: 100%;" 
+          size="large" 
+          htmlType="submit" 
+          type="primary">Send</a-button>
+        </a-form-model-item>
         <div>
           <a style="float: right" @click="toLogin" >Login account</a>
         </div>
-      </a-form>
+      </a-form-model>
     </div>
   </user-layout>
 </template>
 
 <script>
 import UserLayout from '@/layouts/UserLayout'
-import { loadRoutes } from '@/utils/routerUtil'
-import {mapMutations} from 'vuex'
 export default {
   name: 'Login',
     data () {
     return {
       logging: false,
       error: '',
-      form: this.$form.createForm(this)
+      forgot: {
+        email: '',
+      }
     }
   },
   components: {UserLayout},
@@ -55,38 +59,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('account', ['setUser', 'setPermissions', 'setRoles']),
-    onSubmit (event) {
-      event.preventDefault()
-      this.form.validateFields((err) => {
-        if (!err) {
-          this.logging = true
-          const name = this.form.getFieldValue('name')
-          const password = this.form.getFieldValue('password')
-          // eslint-disable-next-line no-undef
-          login(name, password).then(this.afterLogin)
-        }
-      })
-    },
-     afterLogin(res) {
-      this.logging = false
-      const loginRes = res.data
-      if (loginRes.code >= 0) {
-        const {user, permissions, roles} = loginRes.data
-        this.setUser(user)
-        this.setPermissions(permissions)
-        this.setRoles(roles)
-        // eslint-disable-next-line no-undef
-        getRoutesConfig().then(result => {
-          const routesConfig = result.data.data
-          loadRoutes(routesConfig)
-          this.$router.push('/dashboard/workplace')
-          this.$message.success(loginRes.message, 3)
-        })
-      } else {
-        this.error = loginRes.message
-      }
-    },
     toRegister() {
       this.$router.push('/register')
     },
@@ -128,7 +100,7 @@ export default {
         margin-bottom: 40px;
       }
     }
-    .login{
+    .forgot{
       width: 368px;
       margin: 0 auto;
       @media screen and (max-width: 576px) {

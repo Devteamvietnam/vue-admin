@@ -1,4 +1,4 @@
-// ant color
+// dev color
 const DEV = {
   primary: {
     color: '#1890ff',
