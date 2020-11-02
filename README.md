@@ -19,7 +19,13 @@ Modern browsers and IE10.
 | IE10, Edge | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
 
 
-# vue-admin
+# Vue-admin
+
+# Help  Project 
+```
+ Docs -> https://devteamvietnam.github.io/vue-press-page/
+
+```
 
 ## Project setup
 ```
