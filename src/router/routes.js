@@ -69,31 +69,6 @@ const options = {
           ]
         },
         {
-          path: "exception",
-          name: "Exception",
-          meta: {
-            icon: "warning"
-          },
-          component: BlankView,
-          children: [
-            {
-              path: "404",
-              name: "Exp404",
-              component: () => import("@/pages/admin/exception/404")
-            },
-            {
-              path: "403",
-              name: "Exp403",
-              component: () => import("@/pages/admin/exception/403")
-            },
-            {
-              path: "500",
-              name: "Exp500",
-              component: () => import("@/pages/admin/exception/500")
-            }
-          ]
-        },
-        {
           path: "account",
           name: "Account",
           meta: {
