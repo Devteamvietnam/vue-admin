@@ -97,7 +97,7 @@ function loadRoutes(routesConfig) {
   // Extract routing internationalization data
   mergeI18nFromRoutes(i18n, router.options.routes)
   // Initialize Admin background menu data
-  const rootRoute = router.options.routes.find(item => item.path ==='/')
+  const rootRoute = router.options.routes.find(item => item.path ==='/admin')
   const menuRoutes = rootRoute && rootRoute.children
   if (menuRoutes) {
     store.commit('setting/setMenuData', menuRoutes)

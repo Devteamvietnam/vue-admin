@@ -9,27 +9,29 @@
     </div>
     <div class="login">
       <a-form-model @submit="handleSubmit" :model="user" @submit.native.prevent>
-        <a-tabs size="large" :tabBarStyle="{textAlign:'center'}" style="padding: 0 2px;">
-          <a-tab-pane tab="Login" key="1">
-            <a-alert type="error" :closable="true" v-show="error" :message="error" showIcon style="margin-bottom: 24px;" />
             <a-form-model-item>
               <a-input
                 autocomplete="autocomplete"
                 size="large"
+                allow-clear
                 id="email"
                 ref="email"
                 placeholder="email"
                 v-model="user.email"
                 required
               >
+                <a-tooltip slot="suffix" title="Using email to login">
+                  <a-icon type="info-circle" style="color: rgba(0,0,0,.45)" />
+                </a-tooltip>
                 <a-icon slot="prefix" type="user" />
               </a-input>
             </a-form-model-item>
             <a-form-model-item>
-              <a-input
+              <a-input-password
                 size="large"
                 id="password"
                 ref="password"
+                allow-clear
                 placeholder="password"
                 autocomplete="autocomplete"
                 type="password"
@@ -37,10 +39,8 @@
                 v-model="user.password"
               >
                 <a-icon slot="prefix" type="lock" />
-              </a-input>
+              </a-input-password>
             </a-form-model-item>
-          </a-tab-pane>
-        </a-tabs>
         <div>
           <a-checkbox :checked="false" >Remember me</a-checkbox>
           <a style="float: right" @click="toForgot">Forgot password</a>
@@ -67,27 +67,63 @@
 
 <script>
 import UserLayout from '@/layouts/UserLayout'
+import User from '@/service/login/user'
 export default {
   name: 'Login',
     data () {
     return {
       logging: false,
       error: '',
-      user: {
-        email: '',
-        password: '',
-      }
+      user: new User('', ''),
     }
   },
   components: {UserLayout},
   computed: {
     systemName () {
       return this.$store.state.setting.systemName
+    },
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
     }
   },
   methods: {
-    handleSubmit() {
-      console.log(this.user);
+    handleSubmit () {
+      if (this.user.email && this.user.password) {
+        console.log(this.user)
+        this
+          .$store
+          .dispatch('auth/login', this.user)
+          .then(() => {
+            this.$notification.success({
+              message: 'Login successfully',
+              description:
+                'Welcome back',
+            })
+            this
+              .$router
+              .push('/admin/dashboard/workplace')
+          })
+          .catch((error) => {
+            if (error.response) {
+              if (error.response.status === 401) {
+               this.$notification.error({
+                message: 'Error',
+                description:
+                  'Email or Password not found. Please try again',
+              })
+              } else if (error.response.status === 404) {
+                this.$notification.error({
+                  message: 'Error',
+                  description:
+                    'Network error, Not Found. Please try again',
+                })
+              }
+            }
+          })
+          . finally(() => {
+            this.loading = false
+          })
+      }
     },
     toRegister() {
       this.$router.push('/register')
