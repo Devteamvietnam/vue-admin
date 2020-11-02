@@ -7,70 +7,77 @@
       </div>
       <div class="desc">The Platform Admin With Vue</div>
     </div>
-    <div class="login">
-      <a-form @submit="onSubmit" :form="form">
-        <a-tabs size="large" :tabBarStyle="{textAlign:'center'}" style="padding: 0 2px;">
-          <a-tab-pane tab="Register" key="1">
+    <div class="register">
+      <a-form-model >
             <a-alert type="error" :closable="true" v-show="error" :message="error" showIcon style="margin-bottom: 24px;" />
-            <a-form-item>
+            <a-form-model-item>
               <a-input
                 autocomplete="autocomplete"
                 size="large"
-                placeholder="username"
-                v-decorator="['name', {rules: [{ required: true, message:'Please enter the account name', whitespace: true}]}]"
+                placeholder="Username"
+                id="username"
+                ref="username"
+                allow-clear
+                required
+                v-model="reg.username"
               >
                 <a-icon slot="prefix" type="user" />
               </a-input>
-            </a-form-item>
-            <a-form-item>
+            </a-form-model-item>
+            <a-form-model-item>
               <a-input
                 autocomplete="autocomplete"
                 size="large"
-                placeholder="email"
-                v-decorator="['name', {rules: [{ required: true, message:'Please enter the email', whitespace: true}]}]"
+                placeholder="Email"
+                id="email"
+                ref="email"
+                allow-clear
+                required
+                v-model="reg.email"
+
               >
                 <a-icon slot="prefix" type="mail" />
               </a-input>
-            </a-form-item>
-            <a-form-item>
+            </a-form-model-item>
+            <a-form-model-item>
               <a-input
                 size="large"
-                placeholder="password"
+                placeholder="Password"
                 autocomplete="autocomplete"
                 type="password"
-                v-decorator="['password', {rules: [{ required: true, message:'Please enter your password', whitespace: true}]}]"
+                ref="password"
+                allow-clear
+                id="password"
+                required
+                v-model="reg.password"
               >
                 <a-icon slot="prefix" type="lock" />
               </a-input>
-            </a-form-item>
-          </a-tab-pane>
-        </a-tabs>
+            </a-form-model-item>
         <a-form-item>
           <a-button :loading="logging" style="width: 100%;margin-top: 24px" size="large" htmlType="submit" type="primary">Register</a-button>
         </a-form-item>
         <div>
-          Other login
-          <a-icon class="icon" type="github" />
-          <a-icon class="icon" type="facebook" />
-          <a-icon class="icon" type="google" />
           <a style="float: right" @click="toLogin" >Login account</a>
         </div>
-      </a-form>
+      </a-form-model>
     </div>
   </user-layout>
 </template>
 
 <script>
 import UserLayout from '@/layouts/UserLayout'
-import { loadRoutes } from '@/utils/routerUtil'
-import {mapMutations} from 'vuex'
 export default {
   name: 'Register',
     data () {
     return {
       logging: false,
       error: '',
-      form: this.$form.createForm(this)
+      reg: {
+        email: '',
+        username: '',
+        password: '',
+      }
     }
   },
   components: {UserLayout},
@@ -80,40 +87,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('account', ['setUser', 'setPermissions', 'setRoles']),
-    onSubmit (event) {
-      event.preventDefault()
-      this.form.validateFields((err) => {
-        if (!err) {
-          this.logging = true
-          const name = this.form.getFieldValue('name')
-          const password = this.form.getFieldValue('password')
-          const email = this.form.getFieldValue('email')
-          // eslint-disable-next-line no-undef
-          register(name,email, password).then(this.afterLogin)
-        }
-      })
-    },
-     afterLogin(res) {
-      this.logging = false
-      const loginRes = res.data
-      if (loginRes.code >= 0) {
-        const {user, permissions, roles} = loginRes.data
-        this.setUser(user)
-        this.setPermissions(permissions)
-        this.setRoles(roles)
-        // Get routing configuration
-        // eslint-disable-next-line no-undef
-        getRoutesConfig().then(result => {
-          const routesConfig = result.data.data
-          loadRoutes(routesConfig)
-          this.$router.push('/dashboard/workplace')
-          this.$message.success(loginRes.message, 3)
-        })
-      } else {
-        this.error = loginRes.message
-      }
-    },
     toLogin() {
       this.$router.push('/login')
     }
@@ -152,7 +125,7 @@ export default {
         margin-bottom: 40px;
       }
     }
-    .login{
+    .register{
       width: 368px;
       margin: 0 auto;
       @media screen and (max-width: 576px) {

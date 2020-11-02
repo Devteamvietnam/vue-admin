@@ -16,7 +16,7 @@
                 allow-clear
                 id="email"
                 ref="email"
-                placeholder="email"
+                placeholder="Email"
                 v-model="user.email"
                 required
               >
@@ -32,7 +32,7 @@
                 id="password"
                 ref="password"
                 allow-clear
-                placeholder="password"
+                placeholder="Password"
                 autocomplete="autocomplete"
                 type="password"
                 required
@@ -53,13 +53,6 @@
           :disabled="user.email === '' || user.password === ''"
           type="primary">Log in</a-button>
         </a-form-model-item>
-        <div style="width: 100%;margin-top: 24px">
-          Other login
-          <a-icon class="icon" type="github" />
-          <a-icon class="icon" type="facebook" />
-          <a-icon class="icon" type="google" />
-          <a style="float: right" @click="toRegister" >Register account</a>
-        </div>
       </a-form-model>
     </div>
   </user-layout>
@@ -68,6 +61,7 @@
 <script>
 import UserLayout from '@/layouts/UserLayout'
 import User from '@/service/login/user'
+import { timeFix } from '@/utils/util'
 export default {
   name: 'Login',
     data () {
@@ -82,9 +76,6 @@ export default {
     systemName () {
       return this.$store.state.setting.systemName
     },
-    loggedIn() {
-      return this.$store.state.auth.status.loggedIn;
-    }
   },
   methods: {
     handleSubmit () {
@@ -96,8 +87,7 @@ export default {
           .then(() => {
             this.$notification.success({
               message: 'Login successfully',
-              description:
-                'Welcome back',
+               description: `${timeFix()}，Welcome Back Bro!`
             })
             this
               .$router

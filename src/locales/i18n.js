@@ -1,9 +1,10 @@
 module.exports = {
   messages: {
     VI: {
+      home: {name: 'Home'},
       admin: {
         name:'Admin',
-        home: {name: 'Home'},
+        home: {name: 'Admin Home'},
         dashboard: {
           name: 'Trang tổng quan',
           workplace: {name: 'WorkPlace'},
@@ -18,14 +19,15 @@ module.exports = {
         account: {
           name: 'Tài khoản', 
         basicsettings: 
-        {name: 'cài đặt cơ bản'}
+        {name: 'Cài đặt cơ bản'}
         }
       }
     },
     US: {
+      home: {name: 'Home'},
       admin: {
         name:'Admin',
-        home: {name:'Home'},
+        home: {name:'Admin Home'},
         dashboard: {
           name:'Dashboard',
           workplace: {name:'WorkPlace'},
@@ -40,15 +42,16 @@ module.exports = {
         account: {
           name:'Account',
           basicsettings: {
-            name:'BasicSettings'
+            name:'Basic Settings'
           }
         }
       }
     },
     KO: {
+      home: {name: 'Home'},
       admin: {
         name:'Admin',
-        home : {name : '집'},
+        home : {name : '관리자 홈'},
         dashboard : {
           name : '대시 보드',
           workplace : {name : '직장'},

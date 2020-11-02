@@ -16,7 +16,7 @@ const progressStart = (to, from, next) => {
   next();
 };
 
-  // redirect /login
+  // redirect /login mode
 
 /**
  * Login guard

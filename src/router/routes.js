@@ -108,7 +108,7 @@ const options = {
               component: () => import("@/pages/admin/account")
             }
           ]
-        },
+        }
       ]
     }
   ]

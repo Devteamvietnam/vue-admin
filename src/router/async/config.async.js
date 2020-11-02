@@ -5,6 +5,7 @@ import {parseRoutes} from '@/utils/routerUtil'
 const routesConfig = [
   'login',
   'root',
+  '/',
   {
     router: 'exp404',
     path: '*',
@@ -14,6 +15,11 @@ const routesConfig = [
     router: 'exp403',
     path: '/403',
     name: '403'
+  },
+  {
+    router: 'exp500',
+    path: '/500',
+    name: '500'
   }
 ]
 

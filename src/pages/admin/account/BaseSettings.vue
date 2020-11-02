@@ -58,7 +58,7 @@ export default {
     return {
       preview: {},
        option: {
-         img:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTYo6PFmPHhwmsP3KDya-ZWiIxxYKJEe-DYRQ&usqp=CAU',
+         img:'https://avatars3.githubusercontent.com/u/55986641?s=460&u=2b38c969e4e0c6f56a6052112c14383408f9e2a3&v=4',
          info: true,
          size: 1,
          outputType:'jpg',

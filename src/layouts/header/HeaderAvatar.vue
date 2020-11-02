@@ -1,18 +1,22 @@
 <template>
   <a-dropdown>
-    <div class="header-avatar"  style="cursor: pointer">
+    <div v-if="name" class="header-avatar"  style="cursor: pointer">
       <a-avatar :src="avatar" class="avatar"  shape="circle" />
       <span class="name">{{name}}</span>
     </div>
+     <div v-else-if="!name" class="header-avatar"  style="cursor: pointer">
+      <a-avatar :src="avatar" class="avatar"  shape="circle" />
+      <span class="name">{{defaultUsername}}</span>
+    </div>
     <a-menu :class="['avatar-menu']" slot="overlay">
       <a-menu-item>
-         <router-link to="/account/basicsettings">
+         <router-link to="/admin/account/basicsettings">
         <a-icon type="user" />
         <span> Personal center</span>
         </router-link>
       </a-menu-item>
       <a-menu-item>
-      <router-link to="/account/basicsettings">
+      <router-link to="/admin/account/basicsettings">
         <a-icon type="setting" />
         <span> Settings</span>
       </router-link>
@@ -33,7 +37,8 @@ export default {
   data () {
     return {
       avatar: 'https://avatars3.githubusercontent.com/u/55986641?s=460&u=2b38c969e4e0c6f56a6052112c14383408f9e2a3&v=4',
-      name: ''
+      name: '',
+      defaultUsername: 'Đinh Đức Thiện'
     }
   },
   computed: {
@@ -44,12 +49,10 @@ export default {
         title: 'Logout!',
         content: 'Do you want to log out now ?',
         onOk: () => {
-         this.$auth.logout().then(() => {
-          this.$router.push('/')  
-          })
+         this.$store.dispatch('auth/logout')
+         this.$router.push('/login')
         },
         onCancel () {
-          this.$router.push('/admin/dashboard/workplace')
         }
       })
     }
