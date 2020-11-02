@@ -13,6 +13,7 @@ class AuthService {
         console.log(response.data)
         if (response.data.accessToken) {
           localStorage.setItem('user', JSON.stringify(response.data))
+          localStorage.setItem('fullname', JSON.stringify(response.data.fullname))
           localStorage.setItem('accessToken', response.data.accessToken)
         }
 
@@ -28,6 +29,7 @@ class AuthService {
   register (user) {
     return axios.post(API_URL + '/api/v1/user/signup', {
       username: user.username,
+      fullname: user.fullname,
       email: user.email,
       password: user.password
     })

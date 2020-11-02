@@ -42,7 +42,6 @@ const options = {
       path: "/admin",
       name: "Admin Home",
       component: TabsView,
-      // redirect: '/login',
       children: [
         {
           path: "dashboard",
