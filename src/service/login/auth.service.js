@@ -12,7 +12,6 @@ class AuthService {
       .then(response => {
         if (response.data.accessToken) {
           localStorage.setItem('user', JSON.stringify(response.data))
-          localStorage.setItem('roles', JSON.stringify(response.data.roles))
           localStorage.setItem('fullname', JSON.stringify(response.data.fullname))
           localStorage.setItem('accessToken', response.data.accessToken)
         }
@@ -23,7 +22,6 @@ class AuthService {
 
   logout () {
     localStorage.removeItem('fullname')
-    localStorage.removeItem('roles')
     localStorage.removeItem('user')
     localStorage.removeItem('accessToken')
     
