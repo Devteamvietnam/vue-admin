@@ -3,7 +3,7 @@ import enquireJs from 'enquire.js'
 export function timeFix () {
   const time = new Date()
   const hour = time.getHours()
-  return hour <9?'Good morning': hour <= 11?'Good morning': hour <= 13?'Good noon': hour <20?'Good afternoon':'Good evening'
+  return hour <9?'Good morning': hour <= 11?'Good morning': hour <= 13?'Good afternoon': hour <20?'Good afternoon':'Good evening'
 }
 
 export function welcome () {

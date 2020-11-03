@@ -41,8 +41,7 @@ export default {
       defaultUsername: 'Đinh Đức Thiện'
     }
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     handleLogout () {
       Modal.confirm({
@@ -58,7 +57,7 @@ export default {
     }
   },
   mounted(){
-    if(localStorage.getItem('fullname')) {
+    if(localStorage.getItem("fullname")) {
       this.name = localStorage.getItem('fullname')
     }
   }
