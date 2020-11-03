@@ -3,11 +3,11 @@ import enquireJs from 'enquire.js'
 export function timeFix () {
   const time = new Date()
   const hour = time.getHours()
-  return hour <9?'Good morning': hour <= 11?'Good morning': hour <= 13?'Good noon': hour <20?'Good afternoon':'Good evening'
+  return hour <9?'Good morning': hour <= 11?'Good morning': hour <= 13?'Good afternoon': hour <20?'Good afternoon':'Good evening'
 }
 
 export function welcome () {
-  const arr = ['Lets take a break','What are you going to eat?','Do you want to play ','I guess you may be tired']
+  const arr = ['Lets take a break','How do you feel today?','Do you want to some eat? ','I guess you may be tired']
   const index = Math.floor(Math.random() * arr.length)
   return arr[index]
 }

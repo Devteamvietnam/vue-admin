@@ -21,8 +21,10 @@ class AuthService {
   }
 
   logout () {
+    localStorage.removeItem('fullname')
     localStorage.removeItem('user')
     localStorage.removeItem('accessToken')
+    
   }
 
   register (user) {
