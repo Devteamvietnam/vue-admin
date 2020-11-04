@@ -15,7 +15,7 @@
           <header-search class="header-item" @active="val => searchActive = val" />
         </a-tooltip>
           <a-tooltip class="header-item" title="Help Doccument" placement="bottom" >
-            <a href="https://github.com/Devteamvietnam/vue-admin" target="_blank">
+            <a href="https://devteamvietnam.github.io/vue-press-page/" target="_blank">
               <a-icon type="question-circle-o" />
             </a>
           </a-tooltip>
