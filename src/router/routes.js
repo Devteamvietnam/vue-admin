@@ -78,6 +78,11 @@ const options = {
           component: PageView,
           children: [
             {
+              path: "accountcenter",
+              name: "AccountCenter",
+              component: () => import("@/pages/admin/account/center")
+            },
+            {
               path: "basicsettings",
               name: "BaseSettings",
               component: () => import("@/pages/admin/account")
