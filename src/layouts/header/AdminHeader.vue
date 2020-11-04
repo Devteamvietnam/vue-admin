@@ -11,13 +11,17 @@
         <i-menu class="head-menu" :theme="headerTheme" mode="horizontal" :options="menuData" @select="onSelect"/>
       </div>
       <div :class="['admin-header-right', headerTheme]">
+        <a-tooltip class="header-item" title="Comming soon" placement="bottom" >
           <header-search class="header-item" @active="val => searchActive = val" />
+        </a-tooltip>
           <a-tooltip class="header-item" title="Help Doccument" placement="bottom" >
-            <a href="https://github.com/Devteamvietnam/vue-admin" target="_blank">
+            <a href="https://devteamvietnam.github.io/vue-press-page/" target="_blank">
               <a-icon type="question-circle-o" />
             </a>
           </a-tooltip>
+          <a-tooltip class="header-item" title="Comming soon" placement="bottom" >
           <header-notice class="header-item"/>
+          </a-tooltip>
           <header-avatar class="header-item"/>
           <a-dropdown class="lang header-item">
             <div>

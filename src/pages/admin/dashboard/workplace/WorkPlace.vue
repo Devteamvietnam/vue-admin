@@ -4,12 +4,6 @@
       <div class="title">{{timeFix}}，{{name}}，{{ welcome }}</div>
       <div>{{position}}</div>
     </div>
-    <template slot="extra">
-      <img style="padding: 0 1px; max-height: 30px;" :xl="16" :lg="24" :md="24" :sm="24" :xs="24"  
-      :src="visit">
-      <img style="padding: 0 30px; max-height: 30px;" :xl="16" :lg="24" :md="24" :sm="24" :xs="24"  
-      :src="made">
-    </template>
     <template>
       <a-row style="margin: 0 -12px">
         <a-col style="padding: 0 12px" :xl="16" :lg="24" :md="24" :sm="24" :xs="24">
@@ -57,7 +51,10 @@
                   <a>
                     <a-avatar :size="30" :src="team.avatar"  />
                     <span class="member">{{name}}</span>
-                    <span class="member">{{team.description}}</span>
+                    <span class="member">{{team.description}}
+                      <img style="padding: 0 30px; max-height: 30px;" :xl="16" :lg="24" :md="24" :sm="24" :xs="24"  
+                    :src="made">
+                    </span>
                   </a>
                 </a-col>
               </a-row>
@@ -118,8 +115,8 @@ export default {
          {
           id: 'bc2ca476-ad95-46af-b550-c2fb5803be07',
           img: '',
-          title: 'this is title',
-          description: 'this is description'
+          title: 'Ivanlucas',
+          description: 'Update workplace'
         },
         {
           id: 'dff6c01d-35ea-478d-b691-b2bf3886ae4f',
@@ -159,6 +156,10 @@ export default {
       })
       this.apiProjects.forEach(project => {
         this.projects.push(project)
+        this.loading = false
+      })
+       this.apiActivites.forEach(activities => {
+        this.activities.push(activities)
         this.loading = false
       })
   } 
