@@ -40,6 +40,7 @@ module.exports = {
       theme: {
         title: 'Cài đặt Kiểu Trang',
         light: 'Phong cách ánh sáng',
+        night: 'Kiểu ban đêm',
         dark: 'Kiểu tối',
         color: 'Màu chủ đề'
       },

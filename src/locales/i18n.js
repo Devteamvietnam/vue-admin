@@ -19,7 +19,10 @@ module.exports = {
         account: {
           name: 'Tài khoản', 
         basicsettings: 
-        {name: 'Cài đặt cơ bản'}
+        {name: 'Cài đặt cơ bản'},
+        accountcenter: {
+          name: 'Trung tâm tài khoản'
+        }
         }
       }
     },
@@ -43,6 +46,9 @@ module.exports = {
           name:'Account',
           basicsettings: {
             name:'Basic Settings'
+          },
+          accountcenter: {
+            name: 'Account Center'
           }
         }
       }
@@ -68,6 +74,9 @@ module.exports = {
           name : '계정',
           basicsettings: {
             name : '기본 설정'
+          },
+          accountcenter: {
+            name: '계정 센터'
           }
         }
       },
