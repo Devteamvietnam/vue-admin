@@ -10,7 +10,7 @@
             <trend style="margin-right: 16px" :term="$t('wow')" :percent="12" :is-increase="true" :scale="0" />
             <trend :term="$t('dod')" :target="100" :value="89" :scale="0" />
           </div>
-          <div slot="footer">{{$ta('daily|sales', 'p')}}<span> USD 234.56</span></div>
+          <div slot="footer">{{ $ta('daily|sales', 'p') }}<span> USD 234.56</span></div>
         </chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
@@ -21,7 +21,7 @@
           <div>
             <mini-area />
           </div>
-          <div slot="footer">{{$ta('daily|visits', 'p')}}<span> 123,4</span></div>
+          <div slot="footer">{{ $ta('daily|visits', 'p') }}<span> 123,4</span></div>
         </chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
@@ -32,7 +32,7 @@
           <div>
             <mini-bar />
           </div>
-          <div slot="footer">{{$t('conversion')}} <span>60%</span></div>
+          <div slot="footer">{{ $t('conversion') }} <span>60%</span></div>
         </chart-card>
       </a-col>
       <a-col :sm="24" :md="12" :xl="6">
@@ -41,26 +41,26 @@
             <a-icon type="info-circle-o" />
           </a-tooltip>
           <div>
-            <mini-progress target="90" percent="78" color="#13C2C2" height="8px"/>
+            <mini-progress target="90" percent="78" color="#13C2C2" height="8px" />
           </div>
-          <div slot="footer" style="white-space: nowrap;overflow: hidden">
+          <div slot="footer" style="white-space: nowrap; overflow: hidden">
             <trend style="margin-right: 16px" :term="$t('wow')" :percent="12" :is-increase="true" :scale="0" />
             <trend :term="$t('dod')" :target="100" :value="89" :scale="0" />
           </div>
         </chart-card>
       </a-col>
     </a-row>
-    <a-card :loading="loading" style="margin-top: 24px" :bordered="false" :body-style="{padding: '24px'}">
+    <a-card :loading="loading" style="margin-top: 24px" :bordered="false" :body-style="{ padding: '24px' }">
       <div class="salesCard">
-        <a-tabs default-active-key="1" size="large" :tab-bar-style="{marginBottom: '24px', paddingLeft: '16px'}">
+        <a-tabs default-active-key="1" size="large" :tab-bar-style="{ marginBottom: '24px', paddingLeft: '16px' }">
           <div class="extra-wrap" slot="tabBarExtraContent">
             <div class="extra-item">
-              <a>{{$t('day')}}</a>
-              <a>{{$t('week')}}</a>
-              <a>{{$t('month')}}</a>
-              <a>{{$t('year')}}</a>
+              <a>{{ $t('day') }}</a>
+              <a>{{ $t('week') }}</a>
+              <a>{{ $t('month') }}</a>
+              <a>{{ $t('year') }}</a>
             </div>
-            <a-range-picker :style="{width: '256px'}"></a-range-picker>
+            <a-range-picker :style="{ width: '256px' }"></a-range-picker>
           </div>
           <a-tab-pane loading="true" :tab="$t('sales')" key="1">
             <a-row>
@@ -68,18 +68,19 @@
                 <bar :title="$ta('trend', 'p')" />
               </a-col>
               <a-col :xl="8" :lg="12" :md="12" :sm="24" :xs="24">
-                <ranking-list :title="$ta('ranking', 'p')" :list="rankList"/>
+                <ranking-list :title="$ta('ranking', 'p')" :list="rankList" />
               </a-col>
             </a-row>
           </a-tab-pane>
-          <a-tab-pane :tab="$t('visits')" key="2"><a-row>
-            <a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
-              <bar :title="$ta('trend', 'p')" />
-            </a-col>
-            <a-col :xl="8" :lg="12" :md="12" :sm="24" :xs="24">
-              <ranking-list :title="$ta('ranking', 'p')" :list="rankList"/>
-            </a-col>
-          </a-row></a-tab-pane>
+          <a-tab-pane :tab="$t('visits')" key="2"
+            ><a-row>
+              <a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
+                <bar :title="$ta('trend', 'p')" />
+              </a-col>
+              <a-col :xl="8" :lg="12" :md="12" :sm="24" :xs="24">
+                <ranking-list :title="$ta('ranking', 'p')" :list="rankList" />
+              </a-col> </a-row
+          ></a-tab-pane>
         </a-tabs>
       </div>
     </a-card>
@@ -90,16 +91,20 @@
         </a-card>
       </a-col>
       <a-col style="padding: 0 12px" :xl="12" :lg="24" :md="24" :sm="24" :xs="24">
-        <a-card :loading="loading" :bordered="false" style="margin-top: 24px;" :title="$t('proportion')">
+        <a-card :loading="loading" :bordered="false" style="margin-top: 24px" :title="$t('proportion')">
           <sales-data />
           <a-radio-group slot="extra" style="margin: -12px 0">
-            <a-radio-button value="a">{{$t('all')}}</a-radio-button>
-            <a-radio-button value="b">{{$t('online')}}</a-radio-button>
-            <a-radio-button value="c">{{$t('stores')}}</a-radio-button>
+            <a-radio-button value="a">{{ $t('all') }}</a-radio-button>
+            <a-radio-button value="b">{{ $t('online') }}</a-radio-button>
+            <a-radio-button value="c">{{ $t('stores') }}</a-radio-button>
           </a-radio-group>
         </a-card>
       </a-col>
     </a-row>
+    <div>
+      <a-back-top />
+      <strong style="color: rgba(64, 64, 64, 0.6)"></strong>
+    </div>
   </div>
 </template>
 
@@ -118,46 +123,45 @@ const rankList = []
 
 for (let i = 0; i < 1; i++) {
   rankList.push({
-    name: 'Ivan lucas'  + ' Devteam',
-    total: 1997.06 - i * 100
+    name: 'Ivan lucas' + ' Devteam',
+    total: 1997.06 - i * 100,
   })
 }
 
 export default {
   name: 'Analysis',
   i18n: require('./i18n'),
-  data () {
+  data() {
     return {
       rankList,
-      loading: true
+      loading: true,
     }
   },
   created() {
-    setTimeout(() => this.loading = !this.loading, 1000)
+    setTimeout(() => (this.loading = !this.loading), 1000)
   },
-  components: {Trend, SalesData, HotSearch, RankingList, Bar, MiniProgress, MiniBar, MiniArea, ChartCard}
+  components: { Trend, SalesData, HotSearch, RankingList, Bar, MiniProgress, MiniBar, MiniArea, ChartCard },
 }
 </script>
 
 <style lang="less" scoped>
-  .extra-wrap{
-    .extra-item{
-      display: inline-block;
-      margin-right: 24px;
-      a:not(:first-child){
-        margin-left: 24px;
-      }
+.extra-wrap {
+  .extra-item {
+    display: inline-block;
+    margin-right: 24px;
+    a:not(:first-child) {
+      margin-left: 24px;
     }
   }
-  @media screen and (max-width: 992px){
-    .extra-wrap .extra-item{
-      display: none;
-    }
+}
+@media screen and (max-width: 992px) {
+  .extra-wrap .extra-item {
+    display: none;
   }
-  @media screen and (max-width: 576px){
-    .extra-wrap{
-      display: none;
-    }
+}
+@media screen and (max-width: 576px) {
+  .extra-wrap {
+    display: none;
   }
-
+}
 </style>

@@ -17,7 +17,7 @@
   "dependencies": {
     "@antv/data-set": "^0.11.7",
     "animate.css": "^4.1.1",
-    "ant-design-vue": "^1.6.5",
+    "ant-design-vue": "^1.7.1",
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "date-fns": "^2.16.1",
@@ -44,7 +44,6 @@
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/test-utils": "^1.0.3",
-    "@vuepress/plugin-back-to-top": "^1.6.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-polyfill": "^6.26.0",
@@ -59,7 +58,6 @@
     "style-resources-loader": "^1.3.3",
     "vue-cli-plugin-style-resources-loader": "^0.1.4",
     "vue-template-compiler": "^2.6.11",
-    "vuepress": "^1.6.0",
     "webpack-theme-color-replacer": "^1.3.14",
     "whatwg-fetch": "^3.4.1"
   },

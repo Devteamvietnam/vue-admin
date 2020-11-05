@@ -10,13 +10,13 @@ module.exports = {
       introduce: 'Introduce'
     },
     KO: {
-      search : '사용자 검색',
-      capita : '1 인당 검색',
-      rank : '순위',
-      keyword : '키워드',
-      users : '사용자',
-      range : '주간 범위',
-      introduce : '소개'
+      search: '사용자 검색',
+      capita: '1 인당 검색',
+      rank: '순위',
+      keyword: '키워드',
+      users: '사용자',
+      range: '주간 범위',
+      introduce: '소개'
     },
     VI: {
       search: 'Tìm kiếm Người dùng',

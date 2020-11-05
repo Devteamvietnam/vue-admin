@@ -4,14 +4,14 @@
       <div class="breadcrumb">
         <a-breadcrumb>
           <a-breadcrumb-item :key="index" v-for="(item, index) in breadcrumb">
-            <span>{{item}}</span>
+            <span>{{ item }}</span>
           </a-breadcrumb-item>
         </a-breadcrumb>
       </div>
       <div class="detail">
         <div class="main">
           <div class="row">
-            <h1 v-if="showPageTitle && title" class="title">{{title}}</h1>
+            <h1 v-if="showPageTitle && title" class="title">{{ title }}</h1>
             <div class="action"><slot name="action"></slot></div>
           </div>
           <div class="row">
@@ -28,33 +28,33 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 export default {
   name: 'PageHeader',
   props: {
     title: {
       type: [String, Boolean],
-      required: false
+      required: false,
     },
     breadcrumb: {
       type: Array,
-      required: false
+      required: false,
     },
     logo: {
       type: String,
-      required: false
+      required: false,
     },
     avatar: {
       type: String,
-      required: false
+      required: false,
     },
   },
   computed: {
-    ...mapState('setting', ['layout', 'showPageTitle', 'pageWidth'])
-  }
+    ...mapState('setting', ['layout', 'showPageTitle', 'pageWidth']),
+  },
 }
 </script>
 
 <style lang="less" scoped>
-  @import "index";
+@import 'index';
 </style>

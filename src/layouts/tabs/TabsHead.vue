@@ -6,7 +6,7 @@
         'tabs-container',
         layout,
         pageWidth,
-        { affixed: affixed, 'fixed-header': fixedHeader, collapsed: adminLayout.collapsed }
+        { affixed: affixed, 'fixed-header': fixedHeader, collapsed: adminLayout.collapsed },
       ]"
       :active-key="active"
       :hide-add="true"
@@ -15,7 +15,7 @@
         <a-icon theme="filled" @click="onLockClick" class="header-lock" :type="fixedTabs ? 'lock' : 'unlock'" />
       </a-tooltip>
       <a-tab-pane v-for="page in pageList" :key="page.fullPath">
-        <div slot="tab" class="tab" @contextmenu="e => onContextmenu(page.fullPath, e)">
+        <div slot="tab" class="tab" @contextmenu="(e) => onContextmenu(page.fullPath, e)">
           <a-icon
             @click="onRefresh(page)"
             :class="['icon-sync', { hide: page.fullPath !== active && !page.loading }]"
@@ -40,26 +40,26 @@ export default {
     messages: {
       KO: {
         lock: '잠금 탭 헤더 클릭',
-        unlock: '잠금 해제하려면 클릭하세요'
+        unlock: '잠금 해제하려면 클릭하세요',
       },
       VI: {
         lock: 'Nhấp vào tab khóa',
-        unlock: 'Nhấp để mở khóa'
+        unlock: 'Nhấp để mở khóa',
       },
       US: {
         lock: 'click to lock the tabs head',
-        unlock: 'click to unlock'
-      }
-    }
+        unlock: 'click to unlock',
+      },
+    },
   },
   props: {
     pageList: Array,
     active: String,
-    fixed: Boolean
+    fixed: Boolean,
   },
   data() {
     return {
-      affixed: false
+      affixed: false,
     }
   },
   inject: ['adminLayout'],
@@ -70,7 +70,7 @@ export default {
     ...mapState('setting', ['layout', 'pageWidth', 'fixedHeader', 'fixedTabs']),
     lockTitle() {
       return this.$t(this.fixedTabs ? 'unlock' : 'lock')
-    }
+    },
   },
   methods: {
     ...mapMutations('setting', ['setFixedTabs']),
@@ -100,8 +100,8 @@ export default {
     },
     pageName(page) {
       return this.$t(getI18nKey(page.keyPath))
-    }
-  }
+    },
+  },
 }
 </script>
 

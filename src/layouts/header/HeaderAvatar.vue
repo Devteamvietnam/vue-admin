@@ -1,29 +1,29 @@
 <template>
   <a-dropdown>
-    <div v-if="name" class="header-avatar"  style="cursor: pointer">
-      <a-avatar :src="avatar" class="avatar"  shape="circle" />
-      <span class="name">{{name}}</span>
+    <div v-if="name" class="header-avatar" style="cursor: pointer">
+      <a-avatar :src="avatar" class="avatar" shape="circle" />
+      <span class="name">{{ name }}</span>
     </div>
-     <div v-else-if="!name" class="header-avatar"  style="cursor: pointer">
-      <a-avatar :src="avatar" class="avatar"  shape="circle" />
-      <span class="name">{{defaultUsername}}</span>
+    <div v-else-if="!name" class="header-avatar" style="cursor: pointer">
+      <a-avatar :src="avatar" class="avatar" shape="circle" />
+      <span class="name">{{ defaultUsername }}</span>
     </div>
     <a-menu :class="['avatar-menu']" slot="overlay">
       <a-menu-item>
-         <router-link to="/admin/account/basicsettings">
-        <a-icon type="user" />
-        <span> Personal center</span>
+        <router-link to="/admin/account/accountcenter">
+          <a-icon type="user" />
+          <span> Personal center</span>
         </router-link>
       </a-menu-item>
       <a-menu-item>
-      <router-link to="/admin/account/basicsettings">
-        <a-icon type="setting" />
-        <span> Settings</span>
-      </router-link>
+        <router-link to="/admin/account/basicsettings">
+          <a-icon type="setting" />
+          <span> Settings</span>
+        </router-link>
       </a-menu-item>
       <a-menu-divider />
-      <a-menu-item  @click="handleLogout">
-        <a-icon style="margin-right: 8px;" type="poweroff" />
+      <a-menu-item @click="handleLogout">
+        <a-icon style="margin-right: 8px" type="poweroff" />
         <span>Sign out</span>
       </a-menu-item>
     </a-menu>
@@ -34,51 +34,51 @@
 import { Modal } from 'ant-design-vue'
 export default {
   name: 'HeaderAvatar',
-  data () {
+  data() {
     return {
-      avatar: 'https://avataaars.io/?avatarStyle=Circle&topType=WinterHat2&accessoriesType=Prescription02&hatColor=PastelYellow&facialHairType=BeardLight&facialHairColor=Black&clotheType=GraphicShirt&clotheColor=Blue03&graphicType=Skull&eyeType=Default&eyebrowType=SadConcernedNatural&mouthType=Concerned&skinColor=Tanned',
+      avatar:
+        'https://avataaars.io/?avatarStyle=Circle&topType=WinterHat2&accessoriesType=Prescription02&hatColor=PastelYellow&facialHairType=BeardLight&facialHairColor=Black&clotheType=GraphicShirt&clotheColor=Blue03&graphicType=Skull&eyeType=Default&eyebrowType=SadConcernedNatural&mouthType=Concerned&skinColor=Tanned',
       name: '',
-      defaultUsername: 'Đinh Đức Thiện'
+      defaultUsername: 'Đinh Đức Thiện',
     }
   },
   computed: {},
   methods: {
-    handleLogout () {
+    handleLogout() {
       Modal.confirm({
         title: 'Logout!',
         content: 'Do you want to log out now ?',
         onOk: () => {
-         this.$store.dispatch('auth/logout')
-         this.$router.push('/login')
+          this.$store.dispatch('auth/logout')
+          this.$router.push('/login')
         },
-        onCancel () {
-        }
+        onCancel() {},
       })
-    }
+    },
   },
-  mounted(){
-    if(localStorage.getItem("fullname")) {
+  mounted() {
+    if (localStorage.getItem('fullname')) {
       this.name = localStorage.getItem('fullname')
     }
-  }
+  },
 }
 </script>
 
 <style lang="less">
-  .header-avatar{
-    display: inline-flex;
-    .avatar, .name{
-      align-self: center;
-    }
-    .avatar{
-      margin-right: 8px;
-    }
-    .name{
-      font-weight: 500;
-    }
+.header-avatar {
+  display: inline-flex;
+  .avatar,
+  .name {
+    align-self: center;
   }
-  .avatar-menu{
-    width: 150px;
+  .avatar {
+    margin-right: 8px;
   }
-
+  .name {
+    font-weight: 500;
+  }
+}
+.avatar-menu {
+  width: 150px;
+}
 </style>

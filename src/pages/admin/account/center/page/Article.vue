@@ -31,7 +31,6 @@
 
 <script>
 import  ArticleListContent   from '@/components/ArticleListContent'
-import IconText from './IconText'
 export default {
     name: 'Article',
     data() {
@@ -68,8 +67,7 @@ export default {
         }
     },
     components: {
-        ArticleListContent,
-        IconText
+        ArticleListContent
     },
     created() {
         this.apiData.forEach(datas => {

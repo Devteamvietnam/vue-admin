@@ -47,7 +47,10 @@
     </a-row>
 
     <avatar-modal ref="modal" @ok="setavatar"/>
-
+    <div>
+    <a-back-top />
+    <strong style="color: rgba(64, 64, 64, 0.6)"></strong>
+  </div>
   </div>
 </template>
 
