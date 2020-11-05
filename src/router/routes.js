@@ -90,8 +90,26 @@ const options = {
               component: () => import("@/pages/admin/account/settings")
             }
           ]
+        },
+        {
+          path: "list",
+          name: "List",
+          meta: {
+            icon: "table",
+            closable: true
+          },
+          component: PageView,
+          children: [{
+              path: "table",
+              name: "Table",
+              component: () => import("@/pages/admin/list/table")
+            }
+          ]
         }
       ]
+    },
+    {
+      path: '*', redirect: '/404', hidden: true
     }
   ]
 };

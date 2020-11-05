@@ -53,6 +53,10 @@ const routerMap = {
     name: "AccountCenter",
     component: () => import("@/pages/admin/account/center")
   },
+  list: {
+    name: "List",
+    component: () => import("@/pages/admin/list/table")
+  },
   exp403: {
     authority: "*",
     name: "exp403",
