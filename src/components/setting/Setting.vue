@@ -151,6 +151,7 @@ import deepMerge from 'deepmerge'
 
 const ColorCheckboxGroup = ColorCheckbox.Group
 const ImgCheckboxGroup = ImgCheckbox.Group
+const key = 'updatable';
 export default {
   name: 'Setting',
   i18n: require('./i18n'),
@@ -188,10 +189,12 @@ export default {
       return this.$el.parentNode
     },
     saveSetting() {
-      const closeMessage = this.$message.loading('Save to local, please wait...', 0)
+      this.$message.loading('Save to local, please wait...', key )
       const config = this.extractConfig(true)
       localStorage.setItem(process.env.VUE_APP_SETTING_KEY, JSON.stringify(config))
-      setTimeout(closeMessage, 800)
+      setTimeout(() => {
+        this.$message.success({ content: 'Save success!', key, duration: 3 });
+      }, 800);
     },
     resetSetting() {
       this.$confirm({
