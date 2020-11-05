@@ -1,5 +1,7 @@
 import routerMap from './router.map'
-import {parseRoutes} from '@/utils/routerUtil'
+import {
+  parseRoutes
+} from '@/utils/routerUtil'
 
 // router config // redirect error if user == null
 const routesConfig = [

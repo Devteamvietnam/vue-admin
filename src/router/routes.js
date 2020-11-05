@@ -8,23 +8,23 @@ const options = {
   routes: [
     // Client
     {
-      path:'/',
-      name:'Home page',
+      path: '/',
+      name: 'Home page',
       component: () => import('@/pages/client/Home.vue')
     },
     {
-      path:'/login',
-      name:'Login page',
+      path: '/login',
+      name: 'Login page',
       component: () => import('@/pages/admin/login')
     },
     {
-      path:'/register',
-      name:'Register page',
+      path: '/register',
+      name: 'Register page',
       component: () => import('@/pages/admin/register')
     },
     {
-      path:'/forgot',
-      name:'Forgot page',
+      path: '/forgot',
+      name: 'Forgot page',
       component: () => import('@/pages/admin/forgot')
     },
     {
@@ -42,16 +42,14 @@ const options = {
       path: "/admin",
       name: "Admin Home",
       component: TabsView,
-      children: [
-        {
+      children: [{
           path: "dashboard",
           name: "Dashboard",
           meta: {
             icon: "dashboard"
           },
           component: BlankView,
-          children: [
-            {
+          children: [{
               path: "workplace",
               name: "WorkPlace",
               meta: {
@@ -64,6 +62,11 @@ const options = {
             {
               path: "analysis",
               name: "Analysis",
+              meta: {
+                page: {
+                  closable: true
+                }
+              },
               component: () => import("@/pages/admin/dashboard/analysis")
             }
           ]
@@ -76,8 +79,7 @@ const options = {
             closable: true
           },
           component: PageView,
-          children: [
-            {
+          children: [{
               path: "accountcenter",
               name: "AccountCenter",
               component: () => import("@/pages/admin/account/center")
@@ -85,7 +87,7 @@ const options = {
             {
               path: "basicsettings",
               name: "BaseSettings",
-              component: () => import("@/pages/admin/account")
+              component: () => import("@/pages/admin/account/settings")
             }
           ]
         }

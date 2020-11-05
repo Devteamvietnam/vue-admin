@@ -19,30 +19,29 @@ export default {
   props: {
     description: {
       type: String,
-      default: ''
+      default: '',
     },
     owner: {
       type: String,
-      required: true
+      required: true,
     },
     avatar: {
       type: String,
-      required: true
+      required: true,
     },
     href: {
       type: String,
-      required: true
+      required: true,
     },
     updateAt: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
 <style lang="less" scoped>
-
 .vue-admin-components-article-list-content-index-listContent {
   .description {
     max-width: 720px;

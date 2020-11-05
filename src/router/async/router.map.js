@@ -47,7 +47,7 @@ const routerMap = {
   },
   basicsettings: {
     name: "BaseSettings",
-    component: () => import("@/pages/admin/account")
+    component: () => import("@/pages/admin/account/settings")
   },
   accountcenter: {
     name: "AccountCenter",

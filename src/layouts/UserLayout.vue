@@ -7,18 +7,18 @@
 
 <script>
 import PageFooter from '@/layouts/footer/PageFooter'
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 export default {
   name: 'CommonLayout',
-  components: {PageFooter},
+  components: { PageFooter },
   computed: {
-    ...mapState('setting', ['footerLinks', 'copyright'])
-  }
+    ...mapState('setting', ['footerLinks', 'copyright']),
+  },
 }
 </script>
 
 <style scoped lang="less">
-.common-layout{
+.common-layout {
   display: flex;
   flex-direction: column;
   height: auto;
@@ -27,10 +27,10 @@ export default {
   background-image: url('https://svgshare.com/i/QhD.svg');
   background-position-x: center;
   background-size: 100%;
-  .content{
+  .content {
     padding: 100px 0;
     flex: 1;
-    @media (min-width: 528px){
+    @media (min-width: 528px) {
       padding: 200px 0 24px;
     }
   }

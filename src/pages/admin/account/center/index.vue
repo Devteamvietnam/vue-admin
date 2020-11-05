@@ -15,8 +15,8 @@
             <p><i class="group"></i> DevTeamVietNam</p>
             <p>
               <i class="address"></i>
-              <span>HCMC city</span>
-              <span>VietNam</span>
+              <span>HCMC City</span>
+              <span> VietNam</span>
             </p>
           </div>
           <a-divider />
@@ -102,7 +102,7 @@ export default {
             'https://avataaars.io/?avatarStyle=Circle&topType=WinterHat2&accessoriesType=Prescription02&hatColor=PastelYellow&facialHairType=BeardLight&facialHairColor=Black&clotheType=GraphicShirt&clotheColor=Blue03&graphicType=Skull&eyeType=Default&eyebrowType=SadConcernedNatural&mouthType=Concerned&skinColor=Tanned',
           name: 'Ivan Lucas',
           description: 'Leader',
-        },
+        }
       ],
       teams: [],
       teamSpinning: true,

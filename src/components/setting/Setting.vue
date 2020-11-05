@@ -5,7 +5,7 @@
       <a-button @click="resetSetting" type="dashed" icon="redo" style="float: right">{{ $t('reset') }}</a-button>
     </setting-item>
     <setting-item :title="$t('theme.title')">
-      <img-checkbox-group @change="values => setTheme({ ...theme, mode: values[0] })" :default-values="[theme.mode]">
+      <img-checkbox-group @change="(values) => setTheme({ ...theme, mode: values[0] })" :default-values="[theme.mode]">
         <img-checkbox
           :title="$t('theme.dark')"
           img="https://gw.alipayobjects.com/zos/rmsportal/LCkqqYNmvBEbokSDscrm.svg"
@@ -34,7 +34,7 @@
     </setting-item>
     <a-divider />
     <setting-item :title="$t('navigate.title')">
-      <img-checkbox-group @change="values => setLayout(values[0])" :default-values="[layout]">
+      <img-checkbox-group @change="(values) => setLayout(values[0])" :default-values="[layout]">
         <img-checkbox
           :title="$t('navigate.side')"
           img="https://gw.alipayobjects.com/zos/rmsportal/JopDzEhOqwOjeNTXkoje.svg"
@@ -104,7 +104,7 @@
             :checked="animate.disabled"
             slot="actions"
             size="small"
-            @change="val => setAnimate({ ...animate, disabled: val })"
+            @change="(val) => setAnimate({ ...animate, disabled: val })"
           />
         </a-list-item>
         <a-list-item>
@@ -112,7 +112,7 @@
           <a-select
             :value="animate.name"
             :getPopupContainer="getPopupContainer"
-            @change="val => setAnimate({ ...animate, name: val })"
+            @change="(val) => setAnimate({ ...animate, name: val })"
             class="select-item"
             size="small"
             slot="actions"
@@ -127,7 +127,7 @@
           <a-select
             :value="animate.direction"
             :getPopupContainer="getPopupContainer"
-            @change="val => setAnimate({ ...animate, direction: val })"
+            @change="(val) => setAnimate({ ...animate, direction: val })"
             class="select-item"
             size="small"
             slot="actions"
@@ -151,18 +151,19 @@ import deepMerge from 'deepmerge'
 
 const ColorCheckboxGroup = ColorCheckbox.Group
 const ImgCheckboxGroup = ImgCheckbox.Group
+const key = 'updatable';
 export default {
   name: 'Setting',
   i18n: require('./i18n'),
   components: { ImgCheckboxGroup, ImgCheckbox, ColorCheckboxGroup, ColorCheckbox, SettingItem },
   data() {
     return {
-      isDev: process.env.NODE_ENV === 'development'
+      isDev: process.env.NODE_ENV === 'development',
     }
   },
   computed: {
     directions() {
-      return this.animates.find(item => item.name == this.animate.name).directions
+      return this.animates.find((item) => item.name == this.animate.name).directions
     },
     ...mapState('setting', [
       'theme',
@@ -175,23 +176,25 @@ export default {
       'fixedHeader',
       'fixedSideBar',
       'hideSetting',
-      'pageWidth'
-    ])
+      'pageWidth',
+    ]),
   },
   watch: {
-    'animate.name': function(val) {
+    'animate.name': function (val) {
       this.setAnimate({ name: val, direction: this.directions[0] })
-    }
+    },
   },
   methods: {
     getPopupContainer() {
       return this.$el.parentNode
     },
     saveSetting() {
-      const closeMessage = this.$message.loading('Save to local, please wait...', 0)
+      this.$message.loading('Save to local, please wait...', key )
       const config = this.extractConfig(true)
       localStorage.setItem(process.env.VUE_APP_SETTING_KEY, JSON.stringify(config))
-      setTimeout(closeMessage, 800)
+      setTimeout(() => {
+        this.$message.success({ content: 'Save success!', key, duration: 3 });
+      }, 800);
     },
     resetSetting() {
       this.$confirm({
@@ -200,7 +203,7 @@ export default {
         onOk() {
           localStorage.removeItem(process.env.VUE_APP_SETTING_KEY)
           window.location.reload()
-        }
+        },
       })
     },
     //Extract configuration
@@ -208,7 +211,7 @@ export default {
       let config = {}
       let mySetting = this.$store.state.setting
       let dftSetting = local ? deepMerge(setting, sysConfig) : setting
-      Object.keys(mySetting).forEach(key => {
+      Object.keys(mySetting).forEach((key) => {
         const dftValue = dftSetting[key],
           myValue = mySetting[key]
         if (dftValue != undefined && !fastEqual(dftValue, myValue)) {
@@ -226,9 +229,9 @@ export default {
       'setFixedHeader',
       'setAnimate',
       'setHideSetting',
-      'setPageWidth'
-    ])
-  }
+      'setPageWidth',
+    ]),
+  },
 }
 </script>
 
