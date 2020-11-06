@@ -1,2 +1,2 @@
-import Vuelist from './Vuelist'
-export default Vuelist
+import List from './List'
+export default List
