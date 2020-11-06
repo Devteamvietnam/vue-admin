@@ -23,6 +23,12 @@ module.exports = {
         accountcenter: {
           name: 'Trung tâm tài khoản'
         }
+        },
+        list: {
+          name: 'Danh sách',
+          table: {
+            name: 'Bảng'
+          }
         }
       }
     },
@@ -49,6 +55,12 @@ module.exports = {
           },
           accountcenter: {
             name: 'Account Center'
+          }
+        },
+        list: {
+          name: 'List',
+          table: {
+            name: 'Table'
           }
         }
       }
@@ -77,6 +89,12 @@ module.exports = {
           },
           accountcenter: {
             name: '계정 센터'
+          }
+        },
+        list: {
+          name: '명부',
+          table: {
+            name: '표'
           }
         }
       },
