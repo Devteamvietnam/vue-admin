@@ -45,10 +45,6 @@ const routerMap = {
     icon: "user",
     component: view.page
   },
-  basicsettings: {
-    name: "BaseSettings",
-    component: () => import("@/pages/admin/account/settings")
-  },
   accountcenter: {
     name: "AccountCenter",
     component: () => import("@/pages/admin/account/center")

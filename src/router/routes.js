@@ -83,11 +83,6 @@ const options = {
               path: "accountcenter",
               name: "AccountCenter",
               component: () => import("@/pages/admin/account/center")
-            },
-            {
-              path: "basicsettings",
-              name: "BaseSettings",
-              component: () => import("@/pages/admin/account/settings")
             }
           ]
         },
