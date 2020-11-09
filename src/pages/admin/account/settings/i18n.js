@@ -7,10 +7,15 @@ module.exports = {
         save: 'Save'
       },
       base: {
-        nikname: 'Nikname',
-        bio: 'Bio',
-        email: 'email',
-        password: 'password'
+        fullname: 'Full Name',
+        address: 'Address',
+        birthdate: 'Birthdate',
+        phonenumber: 'Phone Number',
+        gender: 'Gender',
+        city: 'City',
+        job: 'Job',
+        email: 'Email',
+        password: 'Password'
       }
     },
     VI: {
