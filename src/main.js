@@ -9,8 +9,8 @@ import 'animate.css/source/animate.css'
 import Plugins from '@/plugins'
 import {initI18n} from '@/utils/i18n'
 import bootstrap from '@/bootstrap'
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 const router = initRouter(store.state.setting.asyncRoutes)
 const i18n = initI18n('US')
@@ -20,6 +20,7 @@ Vue.config.productionTip = false
 Vue.use(Viser)
 Vue.use(Plugins)
 Vue.use(ElementUI)
+
 
 bootstrap({
   router,
