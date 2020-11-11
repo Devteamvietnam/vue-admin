@@ -41,7 +41,7 @@ function setAppOptions(options) {
     }
     // parse route from router and routeCfg
     if (!router) {
-      console.warn(`can't find register for router ${routeCfg.router}, please register it in advance.`)
+     'DevTeam'
     } else {
       const route = {
         path: routeCfg.path || router.path || routeCfg.router,
@@ -71,8 +71,6 @@ function setAppOptions(options) {
  * @param routesConfig {RouteConfig[]} route configuration
  */
 function loadRoutes(routesConfig) {
-  //Compatible with versions below 0.6.1
-  /*************** compatible version <v0.6.1 *****************/
   if (arguments.length> 0) {
     const arg0 = arguments[0]
     if (arg0.router || arg0.i18n || arg0.store) {
@@ -80,17 +78,10 @@ function loadRoutes(routesConfig) {
       console.error('the usage of signature loadRoutes({router, store, i18n}, routesConfig) is out of date, please use the new signature: loadRoutes(routesConfig).')
     }
   }
-  /*************** compatible version <v0.6.1 *****************/
 
   // Application configuration
   const {router, store, i18n} = appOptions
 
-  // If routesConfig has a value, update it to the local, otherwise get it from the local
-  if (routesConfig) {
-    store.commit('account/setRoutesConfig', routesConfig)
-  } else {
-    routesConfig = store.getters['account/routesConfig']
-  }
   // If asynchronous routing is enabled, load the asynchronous routing configuration
   const asyncRoutes = store.state.setting.asyncRoutes
   if (asyncRoutes) {
@@ -106,7 +97,7 @@ function loadRoutes(routesConfig) {
   // Extract routing internationalization data
   mergeI18nFromRoutes(i18n, router.options.routes)
   // Initialize Admin background menu data
-  const rootRoute = router.options.routes.find(item => item.path ==='/')
+  const rootRoute = router.options.routes.find(item => item.path === '/admin')
   const menuRoutes = rootRoute && rootRoute.children
   if (menuRoutes) {
     store.commit('setting/setMenuData', menuRoutes)

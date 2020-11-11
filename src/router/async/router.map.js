@@ -5,20 +5,20 @@ const view = {
   page: () => import("@/layouts/PageView")
 };
 
-// route map
+// route map local
 const routerMap = {
   login: {
     authority: '*',
     path: '/login',
-    component: () => import('@/pages/login')
+    component: () => import('@/pages/admin/login')
   },
   register: {
     authority: '*',
     path: '/register',
-    component: () => import('@/pages/register')
+    component: () => import('@/pages/admin/register')
   },
   root: {
-    path: '/',
+    path: '/admin',
     name: 'Home',
     redirect: '/login',
     component: view.tabs
@@ -29,11 +29,11 @@ const routerMap = {
   },
   workplace: {
     name: "WorkPlace",
-    component: () => import("@/pages/dashboard/workplace")
+    component: () => import("@/pages/admin/dashboard/workplace")
   },
   analysis: {
     name: "Analysis",
-    component: () => import("@/pages/dashboard/analysis")
+    component: () => import("@/pages/admin/dashboard/analysis")
   },
   exception: {
     name: "Exception",
@@ -45,25 +45,29 @@ const routerMap = {
     icon: "user",
     component: view.page
   },
-  basicsettings: {
-    name: "BaseSettings",
-    component: () => import("@/pages/account")
+  accountcenter: {
+    name: "AccountCenter",
+    component: () => import("@/pages/admin/account/center")
+  },
+  list: {
+    name: "List",
+    component: () => import("@/pages/admin/list/table")
   },
   exp403: {
     authority: "*",
     name: "exp403",
     path: "403",
-    component: () => import("@/pages/exception/403")
+    component: () => import("@/pages/admin/exception/403")
   },
   exp404: {
     name: "exp404",
     path: "404",
-    component: () => import("@/pages/exception/404")
+    component: () => import("@/pages/admin/exception/404")
   },
   exp500: {
     name: "exp500",
     path: "500",
-    component: () => import("@/pages/exception/500")
+    component: () => import("@/pages/admin/exception/500")
   }
 };
 export default routerMap;

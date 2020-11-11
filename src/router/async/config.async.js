@@ -1,10 +1,13 @@
 import routerMap from './router.map'
-import {parseRoutes} from '@/utils/routerUtil'
+import {
+  parseRoutes
+} from '@/utils/routerUtil'
 
-// router config
+// router config // redirect error if user == null
 const routesConfig = [
   'login',
   'root',
+  '/',
   {
     router: 'exp404',
     path: '*',
@@ -14,6 +17,11 @@ const routesConfig = [
     router: 'exp403',
     path: '/403',
     name: '403'
+  },
+  {
+    router: 'exp500',
+    path: '/500',
+    name: '500'
   }
 ]
 

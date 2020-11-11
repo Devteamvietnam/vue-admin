@@ -1,9 +1,8 @@
-import { hasAuthority } from "@/utils/authority-utils";
-// import { loginIgnore } from "@/router/index";
-// import { checkAuthorization } from "@/utils/request";
 import NProgress from "nprogress";
 
-NProgress.configure({ showSpinner: false });
+NProgress.configure({
+  showSpinner: false
+});
 
 /**
  * Start of progress bar
@@ -19,40 +18,27 @@ const progressStart = (to, from, next) => {
   next();
 };
 
-// /**
-//  * Login guard
-//  * @param to
-//  * @param form
-//  * @param next
-//  * @param options
-//  */
-// const loginGuard = (to, from, next, options) => {
-//   const { message } = options;
-//   if (!loginIgnore.includes(to) && !checkAuthorization()) {
-//     message.warning("Login has expired, please log in again");
-//     next({ path: "/login" });
-//   } else {
-//     next();
-//   }
-// };
+// redirect /login mode
 
 /**
- * Permission guard
+ * Login guard
  * @param to
  * @param form
  * @param next
  * @param options
  */
-const authorityGuard = (to, from, next, options) => {
-  const { store, message } = options;
-  const permissions = store.getters["account/permissions"];
-  const roles = store.getters["account/roles"];
-  if (!hasAuthority(to, permissions, roles)) {
-    message.warning(`Sorry, you are not authorized to access the page: ${to.fullPath}, please contact the administrator`);
-    next({ path: "/403" });
-    NProgress.done();
+const loginGuard = (to, from, next) => {
+  const user = localStorage.getItem('user')
+  if (user === null) {
+    if (to.path.search(/admin/) !== -1) {
+      next({
+        path: '/login'
+      })
+    } else {
+      next()
+    }
   } else {
-    next();
+    next()
   }
 };
 
@@ -65,14 +51,18 @@ const authorityGuard = (to, from, next, options) => {
  * @returns {*}
  */
 const redirectGuard = (to, from, next, options) => {
-  const { store } = options;
+  const {
+    store
+  } = options;
   if (store.state.setting.layout === "mix") {
     const firstMenu = store.getters["setting/firstMenu"];
     if (firstMenu.find(item => item.fullPath === to.fullPath)) {
       store.commit("setting/setActivatedFirst", to.fullPath);
       const subMenu = store.getters["setting/subMenu"];
       if (subMenu.length > 0) {
-        return next({ path: subMenu[0].fullPath });
+        return next({
+          path: subMenu[0].fullPath
+        });
       }
     }
   }
@@ -91,6 +81,6 @@ const progressDone = () => {
 };
 
 export default {
-  beforeEach: [progressStart, authorityGuard, redirectGuard],
+  beforeEach: [progressStart, redirectGuard, loginGuard],
   afterEach: [progressDone]
 };

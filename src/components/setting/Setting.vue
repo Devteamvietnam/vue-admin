@@ -1,252 +1,239 @@
 <template>
-  <div class="side-setting">
+<div class="side-setting">
     <setting-item>
-      <a-button @click="saveSetting" type="primary" icon="save">{{ $t('save') }}</a-button>
-      <a-button @click="resetSetting" type="dashed" icon="redo" style="float: right">{{ $t('reset') }}</a-button>
+        <a-button @click="saveSetting" type="primary" icon="save">{{ $t('save') }}</a-button>
+        <a-button @click="resetSetting" type="dashed" icon="redo" style="float: right">{{ $t('reset') }}</a-button>
     </setting-item>
     <setting-item :title="$t('theme.title')">
-      <img-checkbox-group @change="values => setTheme({ ...theme, mode: values[0] })" :default-values="[theme.mode]">
-        <img-checkbox
-          :title="$t('theme.dark')"
-          img="https://gw.alipayobjects.com/zos/rmsportal/LCkqqYNmvBEbokSDscrm.svg"
-          value="dark"
-        />
-        <img-checkbox
-          :title="$t('theme.light')"
-          img="https://gw.alipayobjects.com/zos/rmsportal/jpRkZQMyYRryryPNtyIC.svg"
-          value="light"
-        />
-        <img-checkbox
-          :title="$t('theme.night')"
-          img="https://gw.alipayobjects.com/zos/antfincdn/hmKaLQvmY2/LCkqqYNmvBEbokSDscrm.svg"
-          value="night"
-        />
-      </img-checkbox-group>
+        <img-checkbox-group @change="(values) => setTheme({ ...theme, mode: values[0] })" :default-values="[theme.mode]">
+            <img-checkbox :title="$t('theme.dark')" img="https://gw.alipayobjects.com/zos/rmsportal/LCkqqYNmvBEbokSDscrm.svg" value="dark" />
+            <img-checkbox :title="$t('theme.light')" img="https://gw.alipayobjects.com/zos/rmsportal/jpRkZQMyYRryryPNtyIC.svg" value="light" />
+            <img-checkbox :title="$t('theme.night')" img="https://gw.alipayobjects.com/zos/antfincdn/hmKaLQvmY2/LCkqqYNmvBEbokSDscrm.svg" value="night" />
+        </img-checkbox-group>
     </setting-item>
     <setting-item :title="$t('theme.color')">
-      <color-checkbox-group
-        @change="(values, colors) => setTheme({ ...theme, color: colors[0] })"
-        :defaultValues="[palettes.indexOf(theme.color)]"
-        :multiple="false"
-      >
-        <color-checkbox v-for="(color, index) in palettes" :key="index" :color="color" :value="index" />
-      </color-checkbox-group>
+        <color-checkbox-group @change="(values, colors) => setTheme({ ...theme, color: colors[0] })" :defaultValues="[palettes.indexOf(theme.color)]" :multiple="false">
+            <color-checkbox v-for="(color, index) in palettes" :key="index" :color="color" :value="index" />
+        </color-checkbox-group>
     </setting-item>
     <a-divider />
     <setting-item :title="$t('navigate.title')">
-      <img-checkbox-group @change="values => setLayout(values[0])" :default-values="[layout]">
-        <img-checkbox
-          :title="$t('navigate.side')"
-          img="https://gw.alipayobjects.com/zos/rmsportal/JopDzEhOqwOjeNTXkoje.svg"
-          value="side"
-        />
-        <img-checkbox
-          :title="$t('navigate.head')"
-          img="https://gw.alipayobjects.com/zos/rmsportal/KDNDBbriJhLwuqMoxcAr.svg"
-          value="head"
-        />
-        <img-checkbox
-          :title="$t('navigate.mix')"
-          img="https://gw.alipayobjects.com/zos/antfincdn/x8Ob%26B8cy8/LCkqqYNmvBEbokSDscrm.svg"
-          value="mix"
-        />
-      </img-checkbox-group>
+        <img-checkbox-group @change="(values) => setLayout(values[0])" :default-values="[layout]">
+            <img-checkbox :title="$t('navigate.side')" img="https://gw.alipayobjects.com/zos/rmsportal/JopDzEhOqwOjeNTXkoje.svg" value="side" />
+            <img-checkbox :title="$t('navigate.head')" img="https://gw.alipayobjects.com/zos/rmsportal/KDNDBbriJhLwuqMoxcAr.svg" value="head" />
+            <img-checkbox :title="$t('navigate.mix')" img="https://gw.alipayobjects.com/zos/antfincdn/x8Ob%26B8cy8/LCkqqYNmvBEbokSDscrm.svg" value="mix" />
+        </img-checkbox-group>
     </setting-item>
     <setting-item>
-      <a-list :split="false">
-        <a-list-item>
-          {{ $t('navigate.content.title') }}
-          <a-select
-            :getPopupContainer="getPopupContainer"
-            :value="pageWidth"
-            @change="setPageWidth"
-            class="select-item"
-            size="small"
-            slot="actions"
-          >
-            <a-select-option value="fluid">{{ $t('navigate.content.fluid') }}</a-select-option>
-            <a-select-option value="fixed">{{ $t('navigate.content.fixed') }}</a-select-option>
-          </a-select>
-        </a-list-item>
-        <a-list-item>
-          {{ $t('navigate.fixedHeader') }}
-          <a-switch :checked="fixedHeader" slot="actions" size="small" @change="setFixedHeader" />
-        </a-list-item>
-        <a-list-item>
-          {{ $t('navigate.fixedSideBar') }}
-          <a-switch :checked="fixedSideBar" slot="actions" size="small" @change="setFixedSideBar" />
-        </a-list-item>
-      </a-list>
+        <a-list :split="false">
+            <a-list-item>
+                {{ $t('navigate.content.title') }}
+                <a-select :getPopupContainer="getPopupContainer" :value="pageWidth" @change="setPageWidth" class="select-item" size="small" slot="actions">
+                    <a-select-option value="fluid">{{ $t('navigate.content.fluid') }}</a-select-option>
+                    <a-select-option value="fixed">{{ $t('navigate.content.fixed') }}</a-select-option>
+                </a-select>
+            </a-list-item>
+            <a-list-item>
+                {{ $t('navigate.fixedHeader') }}
+                <a-switch :checked="fixedHeader" slot="actions" size="small" @change="setFixedHeader" />
+            </a-list-item>
+            <a-list-item>
+                {{ $t('navigate.fixedSideBar') }}
+                <a-switch :checked="fixedSideBar" slot="actions" size="small" @change="setFixedSideBar" />
+            </a-list-item>
+        </a-list>
     </setting-item>
     <a-divider />
     <setting-item :title="$t('other.title')">
-      <a-list :split="false">
-        <a-list-item>
-          {{ $t('other.weekMode') }}
-          <a-switch :checked="weekMode" slot="actions" size="small" @change="setWeekMode" />
-        </a-list-item>
-        <a-list-item>
-          {{ $t('other.multiPages') }}
-          <a-switch :checked="multiPage" slot="actions" size="small" @change="setMultiPage" />
-        </a-list-item>
-        <a-list-item>
-          {{ $t('other.hideSetting') }}
-          <a-switch :checked="hideSetting" slot="actions" size="small" @change="setHideSetting" />
-        </a-list-item>
-      </a-list>
+        <a-list :split="false">
+            <a-list-item>
+                {{ $t('other.weekMode') }}
+                <a-switch :checked="weekMode" slot="actions" size="small" @change="setWeekMode" />
+            </a-list-item>
+            <a-list-item>
+                {{ $t('other.multiPages') }}
+                <a-switch :checked="multiPage" slot="actions" size="small" @change="setMultiPage" />
+            </a-list-item>
+            <a-list-item>
+                {{ $t('other.hideSetting') }}
+                <a-switch :checked="hideSetting" slot="actions" size="small" @change="setHideSetting" />
+            </a-list-item>
+        </a-list>
     </setting-item>
     <a-divider />
     <setting-item :title="$t('animate.title')">
-      <a-list :split="false">
-        <a-list-item>
-          {{ $t('animate.disable') }}
-          <a-switch
-            :checked="animate.disabled"
-            slot="actions"
-            size="small"
-            @change="val => setAnimate({ ...animate, disabled: val })"
-          />
-        </a-list-item>
-        <a-list-item>
-          {{ $t('animate.effect') }}
-          <a-select
-            :value="animate.name"
-            :getPopupContainer="getPopupContainer"
-            @change="val => setAnimate({ ...animate, name: val })"
-            class="select-item"
-            size="small"
-            slot="actions"
-          >
-            <a-select-option :key="index" :value="item.name" v-for="(item, index) in animates">{{
+        <a-list :split="false">
+            <a-list-item>
+                {{ $t('animate.disable') }}
+                <a-switch :checked="animate.disabled" slot="actions" size="small" @change="(val) => setAnimate({ ...animate, disabled: val })" />
+            </a-list-item>
+            <a-list-item>
+                {{ $t('animate.effect') }}
+                <a-select :value="animate.name" :getPopupContainer="getPopupContainer" @change="(val) => setAnimate({ ...animate, name: val })" class="select-item" size="small" slot="actions">
+                    <a-select-option :key="index" :value="item.name" v-for="(item, index) in animates">{{
               item.alias
             }}</a-select-option>
-          </a-select>
-        </a-list-item>
-        <a-list-item>
-          {{ $t('animate.direction') }}
-          <a-select
-            :value="animate.direction"
-            :getPopupContainer="getPopupContainer"
-            @change="val => setAnimate({ ...animate, direction: val })"
-            class="select-item"
-            size="small"
-            slot="actions"
-          >
-            <a-select-option :key="index" :value="item" v-for="(item, index) in directions">{{ item }}</a-select-option>
-          </a-select>
-        </a-list-item>
-      </a-list>
+                </a-select>
+            </a-list-item>
+            <a-list-item>
+                {{ $t('animate.direction') }}
+                <a-select :value="animate.direction" :getPopupContainer="getPopupContainer" @change="(val) => setAnimate({ ...animate, direction: val })" class="select-item" size="small" slot="actions">
+                    <a-select-option :key="index" :value="item" v-for="(item, index) in directions">{{ item }}</a-select-option>
+                </a-select>
+            </a-list-item>
+        </a-list>
     </setting-item>
-  </div>
+</div>
 </template>
 
 <script>
 import SettingItem from './SettingItem'
-import { ColorCheckbox, ImgCheckbox } from '@/components/checkbox'
-import { mapState, mapMutations } from 'vuex'
-import { setting } from '@/config/default'
+import {
+    ColorCheckbox,
+    ImgCheckbox
+} from '@/components/checkbox'
+import {
+    mapState,
+    mapMutations
+} from 'vuex'
+import {
+    setting
+} from '@/config/default'
 import sysConfig from '@/config/config'
 import fastEqual from 'fast-deep-equal'
 import deepMerge from 'deepmerge'
 
 const ColorCheckboxGroup = ColorCheckbox.Group
 const ImgCheckboxGroup = ImgCheckbox.Group
+const key = 'updatable';
 export default {
-  name: 'Setting',
-  i18n: require('./i18n'),
-  components: { ImgCheckboxGroup, ImgCheckbox, ColorCheckboxGroup, ColorCheckbox, SettingItem },
-  data() {
-    return {
-      copyConfig: 'Sorry, you have copied nothing O(∩_∩)O~',
-      isDev: process.env.NODE_ENV === 'development'
-    }
-  },
-  computed: {
-    directions() {
-      return this.animates.find(item => item.name == this.animate.name).directions
+    name: 'Setting',
+    i18n: require('./i18n'),
+    components: {
+        ImgCheckboxGroup,
+        ImgCheckbox,
+        ColorCheckboxGroup,
+        ColorCheckbox,
+        SettingItem
     },
-    ...mapState('setting', [
-      'theme',
-      'layout',
-      'animate',
-      'animates',
-      'palettes',
-      'multiPage',
-      'weekMode',
-      'fixedHeader',
-      'fixedSideBar',
-      'hideSetting',
-      'pageWidth'
-    ])
-  },
-  watch: {
-    'animate.name': function(val) {
-      this.setAnimate({ name: val, direction: this.directions[0] })
-    }
-  },
-  methods: {
-    getPopupContainer() {
-      return this.$el.parentNode
-    },
-    saveSetting() {
-      const closeMessage = this.$message.loading('Save to local, please wait...', 0)
-      const config = this.extractConfig(true)
-      localStorage.setItem(process.env.VUE_APP_SETTING_KEY, JSON.stringify(config))
-      setTimeout(closeMessage, 800)
-    },
-    resetSetting() {
-      this.$confirm({
-        title:
-          'Resetting the theme will refresh the page, and the current page content will not be retained. Confirm to reset? ',
-        onOk() {
-          localStorage.removeItem(process.env.VUE_APP_SETTING_KEY)
-          window.location.reload()
+    data() {
+        return {
+            isDev: process.env.NODE_ENV === 'development',
         }
-      })
     },
-    //Extract configuration
-    extractConfig(local = false) {
-      let config = {}
-      let mySetting = this.$store.state.setting
-      let dftSetting = local ? deepMerge(setting, sysConfig) : setting
-      Object.keys(mySetting).forEach(key => {
-        const dftValue = dftSetting[key],
-          myValue = mySetting[key]
-        if (dftValue != undefined && !fastEqual(dftValue, myValue)) {
-          config[key] = myValue
-        }
-      })
-      return config
+    computed: {
+        directions() {
+            return this.animates.find((item) => item.name == this.animate.name).directions
+        },
+        ...mapState('setting', [
+            'theme',
+            'layout',
+            'animate',
+            'animates',
+            'palettes',
+            'multiPage',
+            'weekMode',
+            'fixedHeader',
+            'fixedSideBar',
+            'hideSetting',
+            'pageWidth',
+        ]),
     },
-    ...mapMutations('setting', [
-      'setTheme',
-      'setLayout',
-      'setMultiPage',
-      'setWeekMode',
-      'setFixedSideBar',
-      'setFixedHeader',
-      'setAnimate',
-      'setHideSetting',
-      'setPageWidth'
-    ])
-  }
+    watch: {
+        'animate.name': function (val) {
+            this.setAnimate({
+                name: val,
+                direction: this.directions[0]
+            })
+        },
+    },
+    methods: {
+        getPopupContainer() {
+            return this.$el.parentNode
+        },
+        saveSetting() {
+            this.$confirm('Save to local, please wait...', key, {
+                confirmButtonText: 'OK',
+                cancelButtonText: 'Cancel',
+                type: 'warning'
+            }).then(() => {
+                const config = this.extractConfig(true)
+                localStorage.setItem(process.env.VUE_APP_SETTING_KEY, JSON.stringify(config))
+                this.$message({
+                    type: 'success',
+                    message: 'Save completed'
+                });
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: 'Save canceled'
+                })
+            })
+        },
+        resetSetting() {
+            this.$confirm('Resetting the theme will refresh the page, and the current page content will not be retained. Confirm to reset? ', 'Warning', {
+                confirmButtonText: 'OK',
+                cancelButtonText: 'Cancel',
+                type: 'warning'
+            }).then(() => {
+                localStorage.removeItem(process.env.VUE_APP_SETTING_KEY)
+                window.location.reload()
+                this.$message({
+                    type: 'success',
+                    message: 'Reset completed'
+                });
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: 'Reset canceled'
+                })
+            })
+        },
+        //Extract configuration
+        extractConfig(local = false) {
+            let config = {}
+            let mySetting = this.$store.state.setting
+            let dftSetting = local ? deepMerge(setting, sysConfig) : setting
+            Object.keys(mySetting).forEach((key) => {
+                const dftValue = dftSetting[key],
+                    myValue = mySetting[key]
+                if (dftValue != undefined && !fastEqual(dftValue, myValue)) {
+                    config[key] = myValue
+                }
+            })
+            return config
+        },
+        ...mapMutations('setting', [
+            'setTheme',
+            'setLayout',
+            'setMultiPage',
+            'setWeekMode',
+            'setFixedSideBar',
+            'setFixedHeader',
+            'setAnimate',
+            'setHideSetting',
+            'setPageWidth',
+        ]),
+    },
 }
 </script>
 
 <style lang="less" scoped>
 .side-setting {
-  min-height: 100%;
-  background-color: @base-bg-color;
-  padding: 24px;
-  font-size: 14px;
-  line-height: 1.5;
-  word-wrap: break-word;
-  position: relative;
-  .flex {
-    display: flex;
-  }
-  .select-item {
-    width: 80px;
-  }
+    min-height: 100%;
+    background-color: @base-bg-color;
+    padding: 24px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    position: relative;
+
+    .flex {
+        display: flex;
+    }
+
+    .select-item {
+        width: 80px;
+    }
 }
 </style>

@@ -17,8 +17,7 @@ const assetsCDN = {
     axios: 'axios',
     nprogress: 'NProgress',
     clipboard: 'ClipboardJS',
-    '@antv/data-set': 'DataSet',
-    'js-cookie': 'Cookies'
+    '@antv/data-set': 'DataSet'
   },
   css: [
   ],
@@ -29,23 +28,14 @@ const assetsCDN = {
     '//cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js',
     '//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js',
     '//cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js',
-    '//cdn.jsdelivr.net/npm/@antv/data-set@0.11.4/build/data-set.min.js',
-    '//cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js'
+    '//cdn.jsdelivr.net/npm/@antv/data-set@0.11.4/build/data-set.min.js'
   ]
 }
 
 module.exports = {
   devServer: {
-    port: 8085
-    // proxy: {
-    //   '/api': { //Here must be consistent with the API_PROXY_PREFIX value in /service/api.js
-    //     target: process.env.VUE_APP_API_BASE_URL,
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       '^/api': ''
-    //     }
-    //   }
-    // }
+    port: 8085,
+    open: true
   },
   pluginOptions: {
     'style-resources-loader': {
