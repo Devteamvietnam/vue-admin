@@ -6,13 +6,13 @@ class AuthService {
   login (user) {
     return axios
       .post(API_URL + '/api/v1/user/signin', {
-        email: user.email,
+        username: user.username,
         password: user.password
       })
       .then(response => {
         if (response.data.accessToken) {
           localStorage.setItem('user', JSON.stringify(response.data))
-          localStorage.setItem('fullname', JSON.stringify(response.data.fullname))
+          localStorage.setItem('fullname', response.data.fullname)
           localStorage.setItem('accessToken', response.data.accessToken)
         }
 

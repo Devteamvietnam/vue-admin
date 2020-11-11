@@ -41,7 +41,7 @@ function setAppOptions(options) {
     }
     // parse route from router and routeCfg
     if (!router) {
-      console.warn(`can't find register for router ${routeCfg.router}, please register it in advance.`)
+     'DevTeam'
     } else {
       const route = {
         path: routeCfg.path || router.path || routeCfg.router,
