@@ -10,9 +10,7 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d dist -b pages -r https://github.com/Devteamvietnam/vue-admin.git",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "deploy": "gh-pages -d dist -b pages -r https://github.com/Devteamvietnam/vue-admin.git"
   },
   "dependencies": {
     "@antv/data-set": "^0.11.7",
