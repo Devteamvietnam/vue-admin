@@ -1,6 +1,6 @@
 <template>
 <a-card>
-    <el-row :gutter="12" class="mx8">
+    <el-row :gutter="10" class="mx8">
         <el-col :span="1.5">
             <el-button round icon="el-icon-refresh" size="mini" @click="resetQuery"></el-button>
         </el-col>
@@ -10,12 +10,9 @@
         <el-col :span="1.5">
             <el-button round icon="el-icon-delete" size="mini" :disabled="multiple"></el-button>
         </el-col>
-        <el-col :span="1.5" :model="queryParams" ref="queryForm" v-show="showSearch">
-            <el-button round type="cyan" icon="el-icon-search" size="mini" @click="handleQuery">Search</el-button>
-        </el-col>
     </el-row>
 
-    <el-table class="table" border v-loading="loading" :data="postList.filter(data => !search || data.postName.toLowerCase().includes(search.toLowerCase()))" @selection-change="handleSelectionChange">
+    <el-table class="table" border v-loading="loading" :data="postList" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column sortable label="Number" align="center" prop="postId" />
         <el-table-column label="Code" align="center" prop="postCode" />
@@ -30,7 +27,6 @@
             </template>
         </el-table-column>
     </el-table>
-    <el-pagination v-show="total>0" :total="total" :page.sync="queryParams.pageNum" :limit.sync="queryParams.pageSize" />
 </a-card>
 </template>
 
@@ -96,8 +92,7 @@ export default {
             this.multiple = !selection.length
         },
         resetQuery() {
-            this.resetForm("queryForm");
-            this.handleQuery();
+            window.location.reload()
         }
     },
     created() {
